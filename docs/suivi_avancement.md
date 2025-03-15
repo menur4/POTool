@@ -27,7 +27,7 @@ Ce document permet de suivre l'avancement de l'implémentation des différentes 
 | Tests unitaires | ✅ | Couverture complète du modèle et des contrôleurs |
 | Internationalisation | ✅ | Messages traduits en français |
 | Sécurité (XSS, CSRF, etc.) | ✅ | Mesures de base implémentées |
-| Interface utilisateur | ⏳ | À implémenter dans le frontend |
+| Interface utilisateur | ✅ | Écrans de connexion, inscription et récupération de mot de passe implémentés et testés |
 
 ## Gestion des Sprints
 
@@ -97,7 +97,7 @@ Ce document permet de suivre l'avancement de l'implémentation des différentes 
 | Connexion MongoDB | ✅ | Intégrée à l'application |
 | Internationalisation | ✅ | Système i18next configuré |
 | Middleware de sécurité | ✅ | Helmet, XSS, etc. configurés |
-| Tests d'intégration | 🔄 | En cours d'implémentation |
+| Tests d'intégration | ✅ | Backend de test implémenté pour l'authentification |
 | Configuration de déploiement | ⏳ | À planifier |
 
 ## Documentation
@@ -112,9 +112,10 @@ Ce document permet de suivre l'avancement de l'implémentation des différentes 
 ## Prochaines Étapes
 
 1. **Court terme (Sprint actuel)**
-   - Finaliser les tests d'intégration pour l'authentification
+   - Finaliser l'implémentation des écrans d'authentification dans le frontend
    - Implémenter les contrôleurs et routes pour la gestion des sprints
    - Écrire les tests unitaires pour le modèle de sprint
+   - Développer l'écran de profil utilisateur
 
 2. **Moyen terme (2-3 Sprints)**
    - Implémenter la gestion complète des epics
@@ -133,3 +134,9 @@ Ce document permet de suivre l'avancement de l'implémentation des différentes 
 - **15/03/2025** : Implémentation du système d'authentification avec JWT
 - **15/03/2025** : Décision d'utiliser bcryptjs au lieu de bcrypt pour éviter les problèmes de compilation native
 - **15/03/2025** : Configuration du dépôt Git et mise en place du script d'automatisation pour GitHub
+- **15/03/2025** : Création de la structure du frontend React avec les écrans d'authentification
+- **15/03/2025** : Mise en place de l'internationalisation (i18n) avec support pour français, anglais et arabe
+- **15/03/2025** : Implémentation des tests unitaires pour les composants d'authentification
+- **15/03/2025** : Mise en place d'un backend de test pour l'authentification avec stockage en mémoire
+- **15/03/2025** : Résolution du problème de connexion à MongoDB en implémentant un mode mémoire fonctionnel
+- **15/03/2025** : Correction de la configuration de l'API frontend pour pointer vers le port correct du serveur backend

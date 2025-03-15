@@ -4,6 +4,43 @@
 
 Le système d'authentification et de gestion des utilisateurs de POTool est basé sur une architecture moderne utilisant JWT (JSON Web Tokens) pour l'authentification sans état. Cette approche permet une meilleure scalabilité et une séparation claire entre le frontend et le backend.
 
+### Mode Mémoire
+
+L'application dispose d'un mode mémoire qui permet de fonctionner sans connexion à MongoDB. Ce mode est particulièrement utile pour le développement et les tests. Lorsque la connexion à MongoDB échoue ou que la variable d'environnement `MONGODB_URI` n'est pas définie, le système bascule automatiquement vers ce mode.
+
+```javascript
+// Dans src/config/db.js
+const connectDB = async () => {
+  try {
+    // Pour les tests, on peut fonctionner sans MongoDB
+    if (!process.env.MONGODB_URI) {
+      console.log('Mode test: Fonctionnement sans base de données MongoDB');
+      return;
+    }
+
+    const conn = await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log(`MongoDB connecté: ${conn.connection.host}`);
+  } catch (error) {
+    console.error(`Erreur de connexion à MongoDB: ${error.message}`);
+    console.log('Fonctionnement en mode mémoire (sans persistance)');
+  }
+};
+```
+
+En mode mémoire, les données utilisateur sont stockées dans un tableau en mémoire plutôt que dans MongoDB :
+
+```javascript
+// Dans src/controllers/auth.js
+// Base de données en mémoire pour les tests
+const users = [];
+```
+
+Cette approche permet de tester l'application sans avoir besoin d'une instance MongoDB en cours d'exécution, mais les données sont perdues lors du redémarrage du serveur.
+
 ## Modèle de Données
 
 ### Schéma Utilisateur
@@ -98,6 +135,41 @@ exports.restrictTo = (...roles) => {
 - **XSS-Clean** : Protection contre les attaques XSS
 - **Express-Mongo-Sanitize** : Prévention des injections NoSQL
 - **Rate Limiting** : Limitation du nombre de requêtes pour prévenir les attaques par force brute
+
+## Configuration Frontend
+
+Le frontend React communique avec le backend via Axios. La configuration de base est définie dans le fichier `client/src/config/api.js` :
+
+```javascript
+import axios from 'axios';
+
+// Configuration de l'URL de base pour toutes les requêtes API
+const api = axios.create({
+  baseURL: 'http://localhost:5000',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  withCredentials: true
+});
+
+// Intercepteur pour ajouter le token d'authentification aux requêtes
+api.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
+export default api;
+```
+
+Il est important de s'assurer que la `baseURL` correspond au port sur lequel le serveur backend est en cours d'exécution (par défaut 5000).
 
 ## API Endpoints
 

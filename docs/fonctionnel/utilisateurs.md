@@ -10,18 +10,22 @@ Le module de gestion des utilisateurs et d'authentification est la pierre angula
 
 POTool offre plusieurs méthodes pour créer un compte utilisateur :
 
-1. **Inscription directe** : L'utilisateur fournit son email, son nom et crée un mot de passe
-2. **Invitation par administrateur** : Un administrateur crée un compte et envoie une invitation par email
-3. **Authentification unique (SSO)** : Intégration avec des systèmes d'authentification d'entreprise (optionnel)
+1. **Inscription directe** : L'utilisateur fournit son email, son prénom, son nom et crée un mot de passe
+   - Le mot de passe doit respecter les règles de sécurité (8 caractères minimum, majuscules, minuscules, chiffres et caractères spéciaux)
+   - L'email doit être unique dans le système
+   - Après inscription réussie, l'utilisateur est automatiquement connecté et redirigé vers le tableau de bord
+2. **Invitation par administrateur** : Un administrateur crée un compte et envoie une invitation par email (fonctionnalité à venir)
+3. **Authentification unique (SSO)** : Intégration avec des systèmes d'authentification d'entreprise (fonctionnalité optionnelle à venir)
 
 ### Processus de Connexion
 
 Le processus d'authentification comprend :
 
 - Formulaire de connexion sécurisé (email/mot de passe)
+- Authentification par token JWT avec expiration configurable
 - Protection contre les attaques par force brute
-- Option "Se souvenir de moi" pour les sessions prolongées
-- Déconnexion sécurisée
+- Option "Se souvenir de moi" pour les sessions prolongées (fonctionnalité à venir)
+- Déconnexion sécurisée avec suppression du token côté client
 
 ### Gestion des Sessions
 
@@ -90,10 +94,20 @@ Le système permet de :
 
 POTool implémente plusieurs niveaux de sécurité :
 
-- Chiffrement des mots de passe avec des algorithmes robustes (bcrypt)
+- Chiffrement des mots de passe avec des algorithmes robustes (bcryptjs)
 - Protection contre les attaques CSRF
 - Validation des entrées pour prévenir les injections
 - Chiffrement des données sensibles
+
+### Mode Mémoire
+
+POTool peut fonctionner en mode mémoire lorsque la connexion à MongoDB n'est pas disponible. Ce mode est particulièrement utile pour :
+
+- Le développement local sans avoir à configurer MongoDB
+- Les tests et démonstrations rapides
+- Les environnements où la persistance des données n'est pas nécessaire
+
+En mode mémoire, toutes les données sont stockées temporairement et seront perdues lors du redémarrage du serveur. Pour une utilisation en production, il est recommandé de configurer une connexion à MongoDB.
 
 ### Journalisation et Audit
 
