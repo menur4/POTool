@@ -1,0 +1,50 @@
+{
+  "health": {
+    "ok": "Le service fonctionne correctement"
+  },
+  "errors": {
+    "server": "Une erreur est survenue sur le serveur",
+    "notFound": "Ressource non trouvée",
+    "unauthorized": "Non autorisé",
+    "validation": "Erreur de validation des données",
+    "duplicate": "{{field}} existe déjà"
+  },
+  "sprint": {
+    "created": "Sprint créé avec succès",
+    "updated": "Sprint mis à jour avec succès",
+    "deleted": "Sprint supprimé avec succès",
+    "notFound": "Sprint non trouvé"
+  },
+  "epic": {
+    "created": "Epic créé avec succès",
+    "updated": "Epic mis à jour avec succès",
+    "deleted": "Epic supprimé avec succès",
+    "notFound": "Epic non trouvé",
+    "imported": "Epics importés avec succès"
+  },
+  "user": {
+    "created": "Utilisateur créé avec succès",
+    "updated": "Utilisateur mis à jour avec succès",
+    "deleted": "Utilisateur supprimé avec succès",
+    "notFound": "Utilisateur non trouvé",
+    "loginSuccess": "Connexion réussie",
+    "loginFailed": "Identifiants incorrects"
+  },
+  "auth": {
+    "noToken": "Veuillez vous connecter pour accéder à cette ressource",
+    "invalidToken": "Token invalide ou expiré",
+    "invalidUser": "Cet utilisateur n'existe plus ou a été désactivé",
+    "unauthorized": "Vous n'êtes pas autorisé à effectuer cette action",
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "emailExists": "Cet email est déjà utilisé",
+    "provideCredentials": "Veuillez fournir un email et un mot de passe",
+    "invalidCredentials": "Email ou mot de passe incorrect",
+    "resetSent": "Un email de réinitialisation a été envoyé si cet email est associé à un compte",
+    "invalidResetToken": "Le token de réinitialisation est invalide ou a expiré",
+    "passwordReset": "Votre mot de passe a été réinitialisé avec succès",
+    "passwordChanged": "Votre mot de passe a été changé avec succès",
+    "incorrectPassword": "Le mot de passe actuel est incorrect",
+    "registrationSuccess": "Inscription réussie",
+    "accountLocked": "Compte verrouillé temporairement suite à plusieurs tentatives échouées"
+  }
+}

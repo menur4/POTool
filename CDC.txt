@@ -1,0 +1,225 @@
+# Brief de Conception - Application de Suivi de Sprints
+
+## 1. Aperçu du Projet
+
+### Objectif
+Développer une application web permettant le suivi des sprints de développement, la gestion de la vélocité de l'équipe, et la visualisation de statistiques et d'une roadmap basée sur les données des sprints.
+
+### Public Cible
+- Chefs de projet
+- Scrum Masters
+- Product Owners
+- Équipes de développement
+
+### Technologies Recommandées
+- **Frontend**: React.js avec Material-UI ou Tailwind CSS
+- **Backend**: Node.js avec Express.js
+- **Base de données**: MongoDB ou PostgreSQL
+- **Authentification**: JWT ou OAuth 2.0
+- **Internationalisation**: i18next
+- **Visualisation de données**: Recharts ou D3.js
+- **Gestion d'état**: Redux ou Context API
+- **Importation de fichiers**: SheetJS (pour les fichiers Excel)
+
+## 2. Architecture Technique
+
+```
+├── Frontend (React.js)
+│   ├── Composants UI
+│   ├── État global (Redux/Context)
+│   ├── Services API
+│   ├── Internationalisation (i18next)
+│   └── Visualisations (Recharts/D3.js)
+│
+├── Backend (Node.js/Express)
+│   ├── API RESTful
+│   ├── Middleware d'authentification
+│   ├── Gestion des utilisateurs
+│   ├── Logique métier
+│   └── Services d'intégration (import Excel)
+│
+└── Base de données
+    ├── Collections/Tables utilisateurs
+    ├── Collections/Tables sprints
+    ├── Collections/Tables epics
+    └── Collections/Tables jours fériés
+```
+
+## 3. Fonctionnalités Principales
+
+### 3.1 Authentification et Gestion des Utilisateurs
+- Système de login sécurisé
+- Gestion des rôles et permissions (Admin, Chef de projet, Membre d'équipe)
+- Profils utilisateurs personnalisables
+
+### 3.2 Internationalisation
+- Support multilingue (français, anglais, arabe marocain)
+- Sélection de la langue et mémorisation de la préférence
+- Adaptation des formats de date et des nombres selon la langue
+
+### 3.3 Gestion du Calendrier
+- Affichage des jours fériés selon le pays sélectionné (France ou Maroc)
+- Possibilité d'ajouter des jours fériés personnalisés
+- Visualisation des congés d'équipe
+- Intégration avec la planification des sprints
+
+### 3.4 Gestion des Sprints
+
+#### Configuration Prévisionnelle
+- Création de sprint avec nom, dates de début/fin, durée
+- Configuration de l'équipe (nombre de développeurs)
+- Paramétrage des contraintes:
+  - Congés prévus
+  - Pourcentage de temps alloué aux réunions
+  - Pourcentage de temps alloué aux bugs
+- Calcul automatique des jours/homme disponibles
+- Suggestion du "panier" de story points embarquables
+
+#### Suivi Réel
+- Ajustement des valeurs réelles (congés, réunions, bugs)
+- Sélection des epics traités avec leurs story points
+- Calcul de la vélocité réelle de l'équipe
+- Historique des ajustements
+
+### 3.5 Gestion des Epics
+- Importation des epics et bugs depuis des fichiers Excel (Jira)
+- Catégorisation par thèmes et étiquettes
+- Interface de gestion et d'organisation des epics
+- Suivi de l'avancement des epics à travers les sprints
+
+### 3.6 Statistiques et Reporting
+
+#### Suivi de Vélocité
+- Graphique d'évolution de la vélocité
+- Tendances et prévisions
+- Comparaison avec les objectifs
+
+#### Analyse des Story Points
+- Visualisation des story points livrés
+- Regroupement par thèmes/catégories
+- Filtrage par période (trimestre, année)
+- Exportation des données
+
+### 3.7 Roadmap
+- Visualisation temporelle des epics
+- Suivi des story points livrés par epic
+- Filtrage et organisation personnalisable
+- Vue d'ensemble des livrables passés et futurs
+
+## 4. Expérience Utilisateur
+
+### 4.1 Interface
+- Design moderne et épuré
+- Responsive (mobile, tablette, desktop)
+- Navigation intuitive
+- Tableaux de bord personnalisables
+
+### 4.2 Flows Utilisateurs Principaux
+
+#### Configuration d'un Nouveau Sprint
+1. Créer un nouveau sprint
+2. Définir les paramètres de base (nom, dates, équipe)
+3. Configurer les contraintes (congés, réunions, bugs)
+4. Voir la capacité calculée
+5. Sélectionner les epics à embarquer
+6. Valider le sprint
+
+#### Clôture de Sprint
+1. Accéder au sprint en cours
+2. Mettre à jour les données réelles
+3. Sélectionner les epics effectivement livrés
+4. Recalculer la vélocité
+5. Valider la clôture du sprint
+
+## 5. Maquettes d'Interface
+
+### 5.1 Dashboard Principal
+![Dashboard]
+- Sprints en cours et à venir
+- Indicateurs clés de performance
+- Accès rapide aux fonctionnalités principales
+
+### 5.2 Page de Configuration de Sprint
+![Sprint Configuration]
+- Formulaire de paramétrage
+- Visualisation des impacts sur la capacité
+- Sélection des epics avec leur story points
+
+### 5.3 Page de Suivi des Epics
+![Epic Management]
+- Liste des epics importés
+- Interface de tagging et de catégorisation
+- Filtres et recherche
+
+### 5.4 Page de Statistiques
+![Statistics]
+- Onglets pour les différentes visualisations
+- Filtres de période
+- Graphiques interactifs
+
+### 5.5 Page Roadmap
+![Roadmap]
+- Timeline des epics
+- Visualisation de l'avancement
+- Filtres par thèmes/catégories
+
+## 6. Intégrations
+
+### 6.1 Import Jira
+- Parseur de fichiers Excel exportés depuis Jira
+- Mappage des champs Jira vers l'application
+- Gestion des mises à jour incrémentales
+
+### 6.2 Export de Données
+- Génération de rapports PDF
+- Export de données au format Excel
+- Partage de dashboards
+
+## 7. Considérations Techniques Supplémentaires
+
+### 7.1 Sécurité
+- Authentification sécurisée
+- Chiffrement des données sensibles
+- Protection CSRF
+- Validation des entrées
+
+### 7.2 Performance
+- Optimisation des requêtes de base de données
+- Mise en cache des données fréquemment accédées
+- Chargement paresseux des composants
+
+### 7.3 Disponibilité
+- Architecture évolutive
+- Sauvegarde régulière des données
+- Journalisation des erreurs
+
+## 8. Phases de Développement Recommandées
+
+### Phase 1: Fondations
+- Mise en place de l'architecture
+- Authentification et gestion des utilisateurs
+- Internationalisation
+- Gestion du calendrier et des jours fériés
+
+### Phase 2: Gestion des Sprints
+- Configuration et suivi des sprints
+- Calcul de la capacité et de la vélocité
+- Importation des epics depuis Jira
+
+### Phase 3: Reporting et Visualisation
+- Statistiques de vélocité
+- Analyse des story points
+- Roadmap
+- Tableaux de bord personnalisables
+
+### Phase 4: Optimisations
+- Amélioration de l'UX/UI
+- Optimisations de performance
+- Fonctionnalités avancées d'exportation
+
+## 9. Considérations Non-Fonctionnelles
+
+- **Accessibilité**: Conformité WCAG 2.1 AA
+- **Compatibilité navigateurs**: Support des navigateurs modernes (Chrome, Firefox, Safari, Edge)
+- **Temps de réponse**: < 2 secondes pour les opérations standards
+- **Maintenance**: Documentation complète et tests automatisés

@@ -1,0 +1,32 @@
+{
+  "health": {
+    "ok": "Service is running correctly"
+  },
+  "errors": {
+    "server": "An error occurred on the server",
+    "notFound": "Resource not found",
+    "unauthorized": "Unauthorized",
+    "validation": "Data validation error"
+  },
+  "sprint": {
+    "created": "Sprint created successfully",
+    "updated": "Sprint updated successfully",
+    "deleted": "Sprint deleted successfully",
+    "notFound": "Sprint not found"
+  },
+  "epic": {
+    "created": "Epic created successfully",
+    "updated": "Epic updated successfully",
+    "deleted": "Epic deleted successfully",
+    "notFound": "Epic not found",
+    "imported": "Epics imported successfully"
+  },
+  "user": {
+    "created": "User created successfully",
+    "updated": "User updated successfully",
+    "deleted": "User deleted successfully",
+    "notFound": "User not found",
+    "loginSuccess": "Login successful",
+    "loginFailed": "Incorrect credentials"
+  }
+}
