@@ -78,6 +78,17 @@ Ce document permet de suivre l'avancement de l'implémentation des différentes 
 | Tests unitaires | ❌ | À implémenter |
 | Interface utilisateur | ❌ | À implémenter dans le frontend |
 
+## Gestion du Code Source et Déploiement
+
+| Fonctionnalité | Statut | Commentaires |
+|----------------|--------|--------------|
+| Initialisation Git | ✅ | Dépôt Git local configuré |
+| Configuration GitHub | ✅ | Script d'automatisation pour push créé |
+| Intégration continue | ⏳ | À configurer avec GitHub Actions |
+| Déploiement automatique | ⏳ | À planifier |
+| Gestion des branches | 📝 | Stratégie documentée, à implémenter |
+| Gestion des versions | ⏳ | À planifier |
+
 ## Infrastructure et Configuration
 
 | Fonctionnalité | Statut | Commentaires |
@@ -121,3 +132,4 @@ Ce document permet de suivre l'avancement de l'implémentation des différentes 
 
 - **15/03/2025** : Implémentation du système d'authentification avec JWT
 - **15/03/2025** : Décision d'utiliser bcryptjs au lieu de bcrypt pour éviter les problèmes de compilation native
+- **15/03/2025** : Configuration du dépôt Git et mise en place du script d'automatisation pour GitHub
