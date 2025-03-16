@@ -4,9 +4,13 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 2rem 0;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background-size: cover;
+  background-position: center;
   font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
 .auth-card {
@@ -17,6 +21,10 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background: #fff;
   animation: slideUp 0.5s ease-out forwards;
+  width: 400px;
+  max-width: 90%;
+  min-width: 320px;
+  box-sizing: border-box;
 }
 
 .auth-card:hover {
@@ -34,10 +42,15 @@
 
 .form-control {
   border-radius: 8px;
-  padding: 12px 15px;
+  padding: 10px 15px;
   font-size: 1rem;
   border: 1px solid #e1e5eb;
   transition: all 0.3s ease;
+  height: 42px;
+}
+
+.input-group .form-control {
+  padding-right: 50px;
 }
 
 .form-control:focus,
@@ -83,13 +96,75 @@
 }
 
 /* Styles pour les icônes */
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .input-group .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  padding: 0;
+}
+
+.password-toggle-btn {
+  width: 42px !important;
+  height: 42px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-left: 1px solid #ced4da;
+  background-color: #f8f9fa;
+  margin-left: 0 !important;
+  padding: 0 !important;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 5;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
 .input-group .bi {
   font-size: 1.1rem;
+}
+
+/* Alignement des icônes dans les labels */
+.form-label {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  display: inline-flex;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.form-label .bi {
+  display: flex;
+  justify-content: center;
+}
+
+/* Alignement du bouton de connexion à droite */
+.login-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.login-btn-container .btn {
+  min-width: 140px;
 }
 
 .text-primary {
@@ -149,6 +224,11 @@
   display: block;
   font-weight: 500;
   animation: shake 0.5s ease-in-out;
+  word-break: break-word;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  white-space: normal;
 }
 
 @keyframes shake {
@@ -162,6 +242,7 @@
   .auth-card {
     margin: 0 1rem;
     border-radius: 12px;
+    width: 100%;
   }
   
   .auth-container {

@@ -63,7 +63,7 @@ const Login = () => {
                   <Form>
                     <div className="mb-3">
                       <label htmlFor="email" className="form-label">
-                        <i className="bi bi-envelope me-2"></i>
+                        <span className="icon-container"><i className="bi bi-envelope"></i></span>
                         {t('auth.email')}
                       </label>
                       <Field
@@ -78,7 +78,7 @@ const Login = () => {
 
                     <div className="mb-3">
                       <label htmlFor="password" className="form-label">
-                        <i className="bi bi-lock me-2"></i>
+                        <span className="icon-container"><i className="bi bi-lock"></i></span>
                         {t('auth.password')}
                       </label>
                       <div className="input-group">
@@ -93,6 +93,8 @@ const Login = () => {
                           variant="outline-secondary"
                           onClick={() => setShowPassword(!showPassword)}
                           aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                          className="password-toggle-btn"
+                          tabIndex="-1"
                         >
                           <i className={`bi bi-eye${showPassword ? '-slash' : ''}`}></i>
                         </Button>
@@ -116,24 +118,25 @@ const Login = () => {
                       </Link>
                     </div>
 
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      className="w-100 mb-3"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                          {t('common.loading')}
-                        </>
-                      ) : (
-                        <>
-                          <i className="bi bi-box-arrow-in-right me-2"></i>
-                          {t('auth.loginButton')}
-                        </>
-                      )}
-                    </Button>
+                    <div className="login-btn-container">
+                      <Button
+                        type="submit"
+                        variant="primary"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            {t('common.loading')}
+                          </>
+                        ) : (
+                          <>
+                            <i className="bi bi-box-arrow-in-right me-2"></i>
+                            {t('auth.loginButton')}
+                          </>
+                        )}
+                      </Button>
+                    </div>
                   </Form>
                 )}
               </Formik>
