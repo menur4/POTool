@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Container, Row, Col, Card, Button, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Alert, Image } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import '../styles/Auth.css';
 
@@ -44,6 +44,10 @@ const Login = () => {
           <Card className="auth-card">
             <Card.Body className="p-4">
               <div className="text-center mb-4">
+                {/* Logo ou icône d'application */}
+                <div className="mb-3">
+                  <i className="bi bi-kanban text-primary" style={{ fontSize: '3rem' }}></i>
+                </div>
                 <h2 className="auth-title">{t('auth.login')}</h2>
                 <p className="text-muted">{t('auth.loginSubtitle')}</p>
               </div>
@@ -58,7 +62,10 @@ const Login = () => {
                 {({ isSubmitting }) => (
                   <Form>
                     <div className="mb-3">
-                      <label htmlFor="email" className="form-label">{t('auth.email')}</label>
+                      <label htmlFor="email" className="form-label">
+                        <i className="bi bi-envelope me-2"></i>
+                        {t('auth.email')}
+                      </label>
                       <Field
                         type="email"
                         name="email"
@@ -70,7 +77,10 @@ const Login = () => {
                     </div>
 
                     <div className="mb-3">
-                      <label htmlFor="password" className="form-label">{t('auth.password')}</label>
+                      <label htmlFor="password" className="form-label">
+                        <i className="bi bi-lock me-2"></i>
+                        {t('auth.password')}
+                      </label>
                       <div className="input-group">
                         <Field
                           type={showPassword ? "text" : "password"}
@@ -82,6 +92,7 @@ const Login = () => {
                         <Button 
                           variant="outline-secondary"
                           onClick={() => setShowPassword(!showPassword)}
+                          aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
                         >
                           <i className={`bi bi-eye${showPassword ? '-slash' : ''}`}></i>
                         </Button>
@@ -117,7 +128,10 @@ const Login = () => {
                           {t('common.loading')}
                         </>
                       ) : (
-                        t('auth.loginButton')
+                        <>
+                          <i className="bi bi-box-arrow-in-right me-2"></i>
+                          {t('auth.loginButton')}
+                        </>
                       )}
                     </Button>
                   </Form>
@@ -130,9 +144,17 @@ const Login = () => {
                 <p className="mb-0">
                   {t('auth.noAccount')}{' '}
                   <Link to="/register" className="text-primary">
+                    <i className="bi bi-person-plus me-1"></i>
                     {t('auth.registerLink')}
                   </Link>
                 </p>
+              </div>
+              
+              <div className="text-center mt-3">
+                <small className="text-muted">
+                  <i className="bi bi-shield-lock me-1"></i>
+                  {t('auth.secureConnection')}
+                </small>
               </div>
             </Card.Body>
           </Card>
