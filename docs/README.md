@@ -18,6 +18,8 @@ POTool est une application web conçue pour aider les équipes de développement
 - Gérer la vélocité de l'équipe
 - Visualiser des statistiques sur la performance des sprints
 - Créer et maintenir une roadmap basée sur les données des sprints
+- Gérer les membres de l'équipe et leurs taux journaliers moyens (TJM)
+- Calculer la valeur financière des user stories
 - Importer des données depuis des fichiers Excel (exports Jira)
 
 Cette application est particulièrement utile pour les :

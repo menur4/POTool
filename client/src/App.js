@@ -10,6 +10,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
+import TeamMembers from './pages/TeamMembers';
 import NotFound from './pages/NotFound';
 // import GoogleCallback from './pages/GoogleCallback';
 
@@ -37,6 +38,9 @@ function App() {
           <Route path="/" element={<ProtectedRoute><Navigate to="/dashboard" /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/team-members" element={<ProtectedRoute><TeamMembers /></ProtectedRoute>} />
+          <Route path="/sprints" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/calendar" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           
           {/* Route 404 */}
           <Route path="*" element={<NotFound />} />

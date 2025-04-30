@@ -88,6 +88,49 @@ Le système permet de :
 - Définir des rôles spécifiques par équipe
 - Visualiser la composition des équipes
 
+### Gestion des Membres d'Équipe
+
+POTool offre une interface complète pour la gestion des membres d'équipe :
+
+#### Informations de Base
+- Nom et prénom
+- Email (visible uniquement dans le formulaire, masqué dans le tableau)
+- Rôle professionnel (Chef de Projet, Delivery Manager, Tech Lead, Développeur, etc.)
+- Taux Journalier Moyen (TJM) - visible uniquement par les administrateurs
+- Statut (Actif/Inactif)
+
+#### Profils Utilisateurs
+Trois niveaux de profils déterminent les permissions dans l'application :
+
+1. **Watcher** (par défaut) :
+   - Accès en lecture seule
+   - Visualisation des données sans modification
+   - Badge bleu dans l'interface
+
+2. **Power User** :
+   - Accès en lecture/écriture limité
+   - Modification des données non sensibles
+   - Badge orange dans l'interface
+
+3. **Admin** :
+   - Accès complet en lecture/écriture
+   - Visualisation des données sensibles (TJM)
+   - Suppression de membres
+   - Badge rouge dans l'interface
+
+#### Localisation
+- Ville et pays de résidence
+- Affichage automatique des drapeaux de pays à côté des noms de villes
+- Conversion intelligente des noms de pays en français vers leurs drapeaux emoji
+- Liste de suggestions de pays dans le formulaire
+
+#### Photos de Profil
+- Upload de photos avec glisser-déposer
+- Prévisualisation des images avant soumission
+- Barre de progression pendant l'upload
+- Formats acceptés : JPG, PNG, GIF, WEBP (max 5MB)
+- Affichage des photos dans le tableau des membres
+
 ## Sécurité
 
 ### Protection des Données

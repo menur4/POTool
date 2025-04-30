@@ -3,22 +3,27 @@ const cors = require('cors');
 const i18next = require('i18next');
 const i18nextMiddleware = require('i18next-http-middleware');
 const dotenv = require('dotenv');
-const mongoose = require('mongoose');
+const path = require('path');
 const helmet = require('helmet');
 const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
+const session = require('express-session');
+const passport = require('./config/passport');
+const { connectDB } = require('./config/database');
 
 // Routes
 const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes');
+const teamMembersRoutes = require('./routes/teamMembers.routes');
+const uploadRoutes = require('./routes/upload.routes');
+const devRoutes = require('./routes/dev.routes'); // Routes pour le développement
 
 // Charger les variables d'environnement
 dotenv.config();
 
-// Connexion à MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/potool')
-  .then(() => console.log('Connexion à MongoDB réussie'))
-  .catch(err => console.error('Erreur de connexion à MongoDB:', err));
+// Afficher l'environnement actuel
+console.log(`Environnement: ${process.env.NODE_ENV || 'development'}`);
 
 // Initialiser l'application Express
 const app = express();
@@ -39,9 +44,26 @@ const limiter = rateLimit({
 app.use('/api/auth', limiter);
 
 // Middleware de base
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3001',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json({ limit: '10kb' })); // Limiter la taille des requêtes JSON
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
+// Configuration de la session
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'your-session-secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: process.env.NODE_ENV === 'production' }
+}));
+
+// Initialisation de Passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Configuration i18next
 i18next.init({
@@ -69,6 +91,26 @@ app.get('/api/health', (req, res) => {
 
 // Routes d'authentification
 app.use('/api/auth', authRoutes);
+
+// Routes des membres d'équipe
+app.use('/api/team-members', teamMembersRoutes);
+
+// Routes d'upload de fichiers
+app.use('/api/upload', uploadRoutes);
+
+// Servir les fichiers statiques du dossier uploads avec les en-têtes CORS appropriés
+app.use('/uploads', (req, res, next) => {
+  // Configurer les en-têtes CORS pour permettre l'accès aux images
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  next();
+}, express.static(path.join(__dirname, 'uploads')));
+
+// Routes de développement (uniquement en environnement de développement)
+if (process.env.NODE_ENV === 'development') {
+  app.use('/api/dev', devRoutes);
+}
 
 // Gestionnaire pour les routes non trouvées
 app.all('*', (req, res) => {
