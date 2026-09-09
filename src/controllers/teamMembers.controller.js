@@ -5,8 +5,9 @@ const TeamMember = require('../models/TeamMember');
 // @access  Private
 exports.getTeamMembers = async (req, res) => {
   try {
-    const teamMembers = await TeamMember.find().sort({ lastName: 1, firstName: 1 });
-    
+    // Ordre personnalisé (drag & drop) d'abord, puis alphabétique en repli
+    const teamMembers = await TeamMember.find().sort({ order: 1, lastName: 1, firstName: 1 });
+
     res.status(200).json({
       success: true,
       count: teamMembers.length,
@@ -17,6 +18,31 @@ exports.getTeamMembers = async (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Erreur lors de la récupération des membres de l\'équipe'
+    });
+  }
+};
+
+// @desc    Réordonner les membres de l'équipe (persiste l'ordre d'affichage)
+// @route   PATCH /api/team-members/reorder
+// @access  Private
+exports.reorderTeamMembers = async (req, res) => {
+  try {
+    const { orderedIds } = req.body;
+    if (!Array.isArray(orderedIds) || orderedIds.length === 0) {
+      return res.status(400).json({ success: false, message: 'orderedIds requis (tableau non vide)' });
+    }
+
+    const ops = orderedIds.map((id, index) => ({
+      updateOne: { filter: { _id: id }, update: { $set: { order: index } } }
+    }));
+    await TeamMember.bulkWrite(ops);
+
+    res.status(200).json({ success: true, count: orderedIds.length });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: 'Erreur lors du réordonnancement des membres de l\'équipe'
     });
   }
 };

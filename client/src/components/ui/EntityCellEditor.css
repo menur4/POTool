@@ -1,0 +1,42 @@
+.entity-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 2px 4px;
+  transition: background 0.12s ease;
+}
+
+.entity-cell:hover {
+  background: var(--ds-color-surface-hover, #f1f5f9);
+  outline: 1px dashed var(--ds-color-border, #cbd5e1);
+}
+
+.entity-cell--editing {
+  cursor: default;
+}
+
+.entity-cell--editing:hover {
+  background: transparent;
+  outline: none;
+}
+
+.entity-cell__empty {
+  color: var(--ds-color-text-tertiary, #94a3b8);
+}
+
+.entity-cell__input {
+  width: 100%;
+  min-width: 90px;
+  padding: 4px 6px;
+  border: 1px solid var(--ds-color-primary, #2563eb);
+  border-radius: 4px;
+  font-size: 12px;
+  box-shadow: 0 0 0 3px var(--ds-color-primary-light, rgba(37, 99, 235, 0.12));
+}
+
+.entity-cell__input:focus {
+  outline: none;
+}

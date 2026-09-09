@@ -20,6 +20,16 @@ export const getTeamMembers = async () => {
   }
 };
 
+// Réordonner les membres de l'équipe (persiste l'ordre d'affichage)
+export const reorderTeamMembers = async (orderedIds) => {
+  try {
+    const response = await axios.patch('/api/team-members/reorder', { orderedIds }, getAuthConfig());
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: 'Erreur lors du réordonnancement des membres de l\'équipe' };
+  }
+};
+
 // Obtenir un membre de l'équipe par son ID
 export const getTeamMember = async (id) => {
   try {

@@ -1,0 +1,235 @@
+/* StatusMappingModal — BEM */
+
+.status-mapping-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ---- Discovered statuses ---- */
+.status-mapping-modal__discovered {
+  padding-bottom: 0.25rem;
+}
+
+.status-mapping-modal__discovered-title {
+  margin: 0 0 0.625rem 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ds-color-text-secondary, #6B7280);
+}
+
+.status-mapping-modal__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.status-mapping-modal__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid #D4D4D4;
+  border-radius: 9999px;
+  background: #fff;
+  font-size: 0.8125rem;
+  color: var(--ds-color-text-primary, #1F2937);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  font-family: inherit;
+  text-align: left;
+}
+
+.status-mapping-modal__chip:hover {
+  border-color: #A3A3A3;
+  background: #F9FAFB;
+}
+
+.status-mapping-modal__chip--mapped {
+  border-color: #BBF7D0;
+  background: #F0FDF4;
+}
+
+.status-mapping-modal__chip--mapped:hover {
+  border-color: #86EFAC;
+  background: #DCFCE7;
+}
+
+.status-mapping-modal__chip-label {
+  font-family: var(--ds-font-mono, monospace);
+}
+
+.status-mapping-modal__chip-badge {
+  font-size: 0.6875rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+/* ---- Table section ---- */
+.status-mapping-modal__section {
+  min-height: 3rem;
+}
+
+.status-mapping-modal__empty {
+  color: var(--ds-color-text-secondary, #6B7280);
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 1rem 0;
+  margin: 0;
+}
+
+.status-mapping-modal__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.status-mapping-modal__table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  color: var(--ds-color-text-secondary, #6B7280);
+  font-weight: 500;
+  border-bottom: 1px solid var(--ds-color-border, #E5E7EB);
+  white-space: nowrap;
+}
+
+.status-mapping-modal__table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--ds-color-border-light, #F3F4F6);
+  vertical-align: middle;
+}
+
+.status-mapping-modal__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.status-mapping-modal__jira-cell {
+  font-family: var(--ds-font-mono, monospace);
+  color: var(--ds-color-text-primary, #1F2937);
+}
+
+.status-mapping-modal__arrow {
+  color: var(--ds-color-text-muted, #9CA3AF);
+  font-size: 1rem;
+  text-align: center;
+  padding: 0 0.25rem !important;
+}
+
+/* ---- Status badges ---- */
+.status-mapping-modal__badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.status-mapping-modal__badge--backlog {
+  background: #F3F4F6;
+  color: #6B7280;
+}
+
+.status-mapping-modal__badge--todo {
+  background: #DBEAFE;
+  color: #1D4ED8;
+}
+
+.status-mapping-modal__badge--in_progress {
+  background: #FEF3C7;
+  color: #B45309;
+}
+
+.status-mapping-modal__badge--review {
+  background: #EDE9FE;
+  color: #6D28D9;
+}
+
+.status-mapping-modal__badge--done {
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.status-mapping-modal__badge--cancelled {
+  background: #FEE2E2;
+  color: #B91C1C;
+}
+
+/* ---- Delete button ---- */
+.status-mapping-modal__delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--ds-color-text-muted, #9CA3AF);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  font-size: 0.875rem;
+}
+
+.status-mapping-modal__delete-btn:hover {
+  color: var(--ds-color-danger, #EF4444);
+  background: var(--ds-color-danger-light, #FEE2E2);
+}
+
+/* ---- Add section ---- */
+.status-mapping-modal__add-section {
+  border-top: 1px solid var(--ds-color-border, #E5E7EB);
+  padding-top: 1rem;
+}
+
+.status-mapping-modal__add-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ds-color-text-primary, #1F2937);
+}
+
+.status-mapping-modal__add-form {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.status-mapping-modal__input-wrapper {
+  flex: 1;
+  min-width: 160px;
+  position: relative;
+}
+
+.status-mapping-modal__form-arrow {
+  color: var(--ds-color-text-muted, #9CA3AF);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.status-mapping-modal__select {
+  height: 44px;
+  padding: 0 0.875rem;
+  border: 1px solid #D4D4D4;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: var(--ds-color-text-primary, #1F2937);
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.status-mapping-modal__select:hover {
+  border-color: #A3A3A3;
+}
+
+.status-mapping-modal__select:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+}

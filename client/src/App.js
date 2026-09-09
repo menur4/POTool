@@ -11,6 +11,11 @@ import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import TeamMembers from './pages/TeamMembers';
+import Configuration from './pages/Configuration';
+import Sprints from './pages/Sprints';
+import Epics from './pages/Epics';
+import Calendar from './pages/Calendar';
+import Roadmap from './pages/Roadmap';
 import NotFound from './pages/NotFound';
 // import GoogleCallback from './pages/GoogleCallback';
 
@@ -38,10 +43,14 @@ function App() {
           <Route path="/" element={<ProtectedRoute><Navigate to="/dashboard" /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-          <Route path="/team-members" element={<ProtectedRoute><TeamMembers /></ProtectedRoute>} />
-          <Route path="/sprints" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/calendar" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          
+          <Route path="/configuration" element={<ProtectedRoute><Configuration /></ProtectedRoute>} />
+          {/* Ancienne route équipe → configuration */}
+          <Route path="/team-members" element={<ProtectedRoute><Navigate to="/configuration" replace /></ProtectedRoute>} />
+          <Route path="/sprints" element={<ProtectedRoute><Sprints /></ProtectedRoute>} />
+          <Route path="/epics" element={<ProtectedRoute><Epics /></ProtectedRoute>} />
+          <Route path="/calendar" element={<ProtectedRoute><Calendar /></ProtectedRoute>} />
+          <Route path="/roadmap" element={<ProtectedRoute><Roadmap /></ProtectedRoute>} />
+
           {/* Route 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>

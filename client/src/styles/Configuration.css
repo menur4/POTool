@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Page Configuration — en-tête + onglets (Équipe, Jira à venir)
+   ========================================================================== */
+
+.config-page {
+  padding: 24px 32px 40px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.config-header {
+  margin-bottom: 20px;
+}
+.config-header__title {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--ds-color-text-primary, #1A1A1A);
+}
+.config-header__subtitle {
+  margin: 6px 0 0;
+  color: var(--ds-color-text-secondary, #6B6459);
+  font-size: 0.95rem;
+}
+
+.config-content {
+  margin-top: 20px;
+}
+
+/* En mode intégré, la sous-page Équipe n'a plus son propre en-tête ni ses
+   marges de page : elle s'insère dans l'onglet. */
+.team-members-page--embedded {
+  padding: 0;
+}
+.team-members-header--embedded {
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 720px) {
+  .config-page { padding: 16px; }
+}

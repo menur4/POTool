@@ -15,8 +15,8 @@ const TeamMemberSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: [true, 'L\'email est requis'],
     unique: true,
+    sparse: true,
     match: [
       /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
       'Veuillez fournir un email valide'
@@ -29,15 +29,19 @@ const TeamMemberSchema = new mongoose.Schema({
       'delivery_manager',    // Delivery Manager
       'tech_lead',           // Tech Lead
       'developpeur',         // Développeur
+      'developpeur_junior',  // Développeur Junior
+      'developpeur_confirme',// Développeur Confirmé
       'business_analyst',    // Business Analyst
       'qa_lead',             // QA Lead
       'qa',                  // QA
       'support',             // Support
       'support_lead',        // Support Lead
+      'product_owner',       // Product Owner
+      'product_manager',     // Product Manager
+      'developpeur_senior',  // Développeur Senior
       'developer',           // Ancienne valeur (pour compatibilité)
       'designer',            // Ancienne valeur (pour compatibilité)
       'tester',              // Ancienne valeur (pour compatibilité)
-      'product_owner',       // Ancienne valeur (pour compatibilité)
       'scrum_master',        // Ancienne valeur (pour compatibilité)
       'other'                // Autre
     ],
@@ -45,12 +49,16 @@ const TeamMemberSchema = new mongoose.Schema({
   },
   dailyRate: {
     type: Number,
-    required: [true, 'Le TJM est requis'],
+    default: 0,
     min: [0, 'Le TJM ne peut pas être négatif']
   },
   active: {
     type: Boolean,
     default: true
+  },
+  order: {
+    type: Number,
+    default: 0
   },
   profile: {
     type: String,

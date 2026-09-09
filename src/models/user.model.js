@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Team'
   }],
+  photo: {
+    type: String,
+    default: ''
+  },
   language: {
     type: String,
     enum: ['fr', 'en', 'ar'],

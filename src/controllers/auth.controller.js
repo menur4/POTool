@@ -205,13 +205,14 @@ exports.getMe = async (req, res) => {
  */
 exports.updateMe = async (req, res) => {
   try {
-    const { firstName, lastName, language } = req.body;
-    
+    const { firstName, lastName, language, photo } = req.body;
+
     // Créer un objet avec les champs à mettre à jour
     const updateData = {};
     if (firstName) updateData.firstName = firstName;
     if (lastName) updateData.lastName = lastName;
     if (language) updateData.language = language;
+    if (photo !== undefined) updateData.photo = photo;
     
     // Mettre à jour l'utilisateur
     const user = await User.findByIdAndUpdate(

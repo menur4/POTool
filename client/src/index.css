@@ -1,12 +1,22 @@
 /* Styles de base pour l'application */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css');
+
+@font-face {
+  font-family: 'AB Chanel Corpo';
+  src: url('./fonts/ABChanelCorpo2022-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Design System Variables */
+@import './styles/variables.css';
 
 body {
   margin: 0;
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'AB Chanel Corpo', "Helvetica Neue", Arial, sans-serif;
+  background-color: #F6F1E7; /* toile beige clair, esthétique Chanel */
+  color: #1A1A1A;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -25,15 +35,15 @@ code {
 
 /* Variables globales */
 :root {
-  --primary-color: #3498db;
-  --secondary-color: #2c3e50;
+  --primary-color: #1A1A1A;
+  --secondary-color: #1A1A1A;
   --success-color: #2ecc71;
   --danger-color: #e74c3c;
-  --warning-color: #f39c12;
-  --info-color: #3498db;
-  --light-color: #f8f9fa;
-  --dark-color: #343a40;
-  --gray-color: #6c757d;
+  --warning-color: #C9A227;
+  --info-color: #6B6459;
+  --light-color: #F6F1E7;
+  --dark-color: #1A1A1A;
+  --gray-color: #6B6459;
 }
 
 /* Styles pour les liens */

@@ -1,0 +1,138 @@
+/* ==========================================================================
+   Profile Page Styles
+   Following Apple HIG and BEM methodology
+   ========================================================================== */
+
+.profile-page {
+  padding: var(--ds-spacing-lg);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-page h1 {
+  font-size: var(--ds-font-size-2xl);
+  font-weight: var(--ds-font-weight-semibold);
+  color: var(--ds-color-text-primary);
+  margin: 0 0 var(--ds-spacing-xs);
+}
+
+.profile-page__subtitle {
+  color: var(--ds-color-text-secondary);
+  margin-bottom: var(--ds-spacing-lg);
+}
+
+.profile-section {
+  margin-bottom: var(--ds-spacing-lg);
+}
+
+.profile-section h5 {
+  font-size: var(--ds-font-size-lg);
+  font-weight: var(--ds-font-weight-semibold);
+  margin-bottom: var(--ds-spacing-md);
+}
+
+/* ---------- Avatar ---------- */
+
+.profile-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ds-spacing-sm);
+  margin-bottom: var(--ds-spacing-lg);
+  padding-bottom: var(--ds-spacing-lg);
+  border-bottom: 1px solid var(--ds-color-border-light);
+}
+
+.profile-avatar__wrapper {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: var(--ds-radius-full);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.profile-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--ds-radius-full);
+}
+
+.profile-avatar__loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ds-color-background-tertiary);
+  border-radius: var(--ds-radius-full);
+}
+
+.profile-avatar__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: var(--ds-radius-full);
+  opacity: 0;
+  transition: opacity var(--ds-transition-fast);
+  color: white;
+  font-size: 1.5rem;
+}
+
+.profile-avatar__wrapper:hover .profile-avatar__overlay {
+  opacity: 1;
+}
+
+.profile-avatar__remove {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-xs);
+  background: none;
+  border: none;
+  color: var(--ds-color-danger);
+  font-size: var(--ds-font-size-xs);
+  cursor: pointer;
+  padding: var(--ds-spacing-xs);
+}
+
+.profile-avatar__remove:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Info rows ---------- */
+
+.profile-info__row {
+  display: flex;
+  padding: var(--ds-spacing-sm) 0;
+  border-bottom: 1px solid var(--ds-color-border-light);
+}
+
+.profile-info__label {
+  flex: 0 0 200px;
+  font-weight: var(--ds-font-weight-semibold);
+  color: var(--ds-color-text-primary);
+}
+
+.profile-info__value {
+  flex: 1;
+  color: var(--ds-color-text-secondary);
+}
+
+@media (max-width: 768px) {
+  .profile-page {
+    padding: var(--ds-spacing-md);
+  }
+
+  .profile-info__row {
+    flex-direction: column;
+    gap: var(--ds-spacing-xs);
+  }
+
+  .profile-info__label {
+    flex: none;
+  }
+}

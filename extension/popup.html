@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <h1>POTool · Jira Sync</h1>
+
+  <label>
+    URL Jira
+    <input id="jiraBaseUrl" type="url" placeholder="https://monentreprise.atlassian.net" />
+  </label>
+
+  <label>
+    Project key
+    <input id="projectKey" type="text" placeholder="PROJ" />
+  </label>
+
+  <label>
+    JQL (optionnel, prioritaire)
+    <input id="jql" type="text" placeholder='project = "PROJ" AND ...' />
+  </label>
+
+  <label>
+    Champ Story Points
+    <input id="storyPointsField" type="text" placeholder="customfield_10016" />
+  </label>
+
+  <label>
+    URL POTool
+    <input id="potoolUrl" type="url" placeholder="http://localhost:3002" />
+  </label>
+
+  <label class="row">
+    <input id="autoSync" type="checkbox" />
+    Synchro automatique toutes les
+    <input id="intervalMinutes" type="number" min="1" value="30" class="small" /> min
+  </label>
+
+  <div class="actions">
+    <button id="save" class="secondary">Enregistrer</button>
+    <button id="syncNow" class="primary">Synchroniser maintenant</button>
+  </div>
+
+  <div id="status" class="status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

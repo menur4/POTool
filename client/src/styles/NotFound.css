@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Not Found Page Styles
+   Following Apple HIG and BEM methodology
+   ========================================================================== */
+
+.not-found-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: var(--ds-spacing-xl);
+}
+
+.not-found-page__content {
+  max-width: 480px;
+}
+
+.not-found-page__code {
+  font-size: 6rem;
+  font-weight: var(--ds-font-weight-bold);
+  color: var(--ds-color-primary);
+  margin: 0;
+  line-height: 1;
+}
+
+.not-found-page__title {
+  font-size: var(--ds-font-size-2xl);
+  font-weight: var(--ds-font-weight-semibold);
+  margin: var(--ds-spacing-md) 0;
+}
+
+.not-found-page__message {
+  color: var(--ds-color-text-muted);
+  margin-bottom: var(--ds-spacing-lg);
+}

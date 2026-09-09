@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Tabs Component Styles
+   ========================================================================== */
+
+.tabs {
+  width: 100%;
+}
+
+.tabs__list {
+  display: flex;
+  gap: var(--ds-spacing-xs, 0.25rem);
+  border-bottom: 1px solid var(--ds-color-border, #E5E7EB);
+  padding: 0 var(--ds-spacing-md, 1rem);
+}
+
+/* Size variants */
+.tabs__list--sm .tabs__tab {
+  padding: var(--ds-spacing-sm, 0.5rem) var(--ds-spacing-md, 1rem);
+  font-size: var(--ds-font-size-sm, 0.875rem);
+}
+
+.tabs__list--md .tabs__tab {
+  padding: var(--ds-spacing-sm, 0.5rem) var(--ds-spacing-lg, 1.5rem);
+  font-size: var(--ds-font-size-md, 1rem);
+}
+
+.tabs__list--lg .tabs__tab {
+  padding: var(--ds-spacing-md, 1rem) var(--ds-spacing-xl, 2rem);
+  font-size: var(--ds-font-size-lg, 1.125rem);
+}
+
+/* Tab button base */
+.tabs__tab {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--ds-color-text-secondary, #6B7280);
+  font-weight: var(--ds-font-weight-medium, 500);
+  cursor: pointer;
+  transition: all var(--ds-transition-fast, 150ms ease);
+  white-space: nowrap;
+  min-height: var(--ds-touch-target-min, 44px);
+}
+
+.tabs__tab:hover:not(.tabs__tab--disabled) {
+  color: var(--ds-color-text-primary, #1F2937);
+}
+
+.tabs__tab--active {
+  color: var(--ds-color-primary, #4F46E5);
+}
+
+.tabs__tab--disabled {
+  color: var(--ds-color-text-muted, #9CA3AF);
+  cursor: not-allowed;
+}
+
+/* Underline variant */
+.tabs__list--underline .tabs__tab::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color var(--ds-transition-fast, 150ms ease);
+}
+
+.tabs__list--underline .tabs__tab--active::after {
+  background-color: var(--ds-color-primary, #4F46E5);
+}
+
+/* Pills variant */
+.tabs__list--pills {
+  border-bottom: none;
+  background: var(--ds-color-background-tertiary, #F3F4F6);
+  border-radius: var(--ds-radius-md, 8px);
+  padding: var(--ds-spacing-xs, 0.25rem);
+}
+
+.tabs__list--pills .tabs__tab {
+  border-radius: var(--ds-radius-sm, 4px);
+}
+
+.tabs__list--pills .tabs__tab--active {
+  background: var(--ds-color-background, #FFFFFF);
+  box-shadow: var(--ds-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+}
+
+/* Default variant */
+.tabs__list--default .tabs__tab {
+  border-radius: var(--ds-radius-md, 8px) var(--ds-radius-md, 8px) 0 0;
+  border: 1px solid transparent;
+  border-bottom: none;
+  margin-bottom: -1px;
+}
+
+.tabs__list--default .tabs__tab--active {
+  background: var(--ds-color-background, #FFFFFF);
+  border-color: var(--ds-color-border, #E5E7EB);
+}

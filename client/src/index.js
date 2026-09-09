@@ -2,9 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
-// Importation des styles Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
+// Styles
+import 'bootstrap/dist/css/bootstrap.min.css'; // Utility classes only (text-center, mb-3, etc.)
 import 'bootstrap-icons/font/bootstrap-icons.css';
+
+// Importation du Design System
+import '@frhamon/design-system/dist/index.css';
+import { ToastProvider } from '@frhamon/design-system';
 
 import './index.css';
 import App from './App';
@@ -18,7 +22,9 @@ root.render(
     <I18nextProvider i18n={i18n}>
       <BrowserRouter>
         <AuthProvider>
-          <App />
+          <ToastProvider>
+            <App />
+          </ToastProvider>
         </AuthProvider>
       </BrowserRouter>
     </I18nextProvider>

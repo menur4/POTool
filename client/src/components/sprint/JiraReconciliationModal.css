@@ -1,0 +1,76 @@
+.jira-reconcile__hint {
+  font-size: 13px;
+  color: var(--ds-color-text-secondary, #64748b);
+  margin: 0 0 12px;
+}
+
+.jira-reconcile__empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--ds-color-text-tertiary, #94a3b8);
+  font-size: 13px;
+}
+
+.jira-reconcile__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.jira-reconcile__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--ds-color-border, #e2e8f0);
+  border-radius: var(--ds-radius-md, 8px);
+}
+
+.jira-reconcile__info {
+  min-width: 0;
+}
+
+.jira-reconcile__name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ds-color-text-primary, #1e293b);
+}
+
+.jira-reconcile__meta {
+  font-size: 11px;
+  color: var(--ds-color-text-tertiary, #94a3b8);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  margin-top: 2px;
+}
+
+.jira-reconcile__sub {
+  font-size: 12px;
+  color: var(--ds-color-text-secondary, #64748b);
+  margin-top: 2px;
+}
+
+.jira-reconcile__actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.jira-reconcile__link-select {
+  max-width: 180px;
+  padding: 5px 8px;
+  border: 1px solid var(--ds-color-border, #cbd5e1);
+  border-radius: var(--ds-radius-md, 6px);
+  font-size: 12px;
+  background: #fff;
+  cursor: pointer;
+}
+.jira-reconcile__link-select:disabled { opacity: 0.5; cursor: default; }

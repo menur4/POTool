@@ -1,0 +1,221 @@
+.jira-config {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-4, 16px);
+}
+
+.jira-config__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-3, 12px);
+}
+
+.jira-config__section + .jira-config__section {
+  border-top: 1px solid var(--ds-color-border, #e2e8f0);
+  padding-top: var(--ds-space-4, 16px);
+}
+
+.jira-config__help {
+  font-size: 13px;
+  color: var(--ds-color-text-secondary, #64748b);
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  line-height: 1.5;
+}
+
+.jira-config__help a {
+  color: var(--ds-color-primary, #2563eb);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.jira-config__help a:hover {
+  text-decoration: underline;
+}
+
+.jira-config__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-1, 4px);
+}
+
+.jira-config__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ds-color-text-secondary, #475569);
+}
+
+.jira-config__token-row {
+  display: flex;
+  gap: var(--ds-space-2, 8px);
+  align-items: flex-start;
+}
+
+.jira-config__token-row > *:first-child {
+  flex: 1;
+}
+
+.jira-config__test-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.jira-config__select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--ds-color-border, #cbd5e1);
+  border-radius: var(--ds-radius-md, 6px);
+  font-size: 14px;
+  color: var(--ds-color-text-primary, #1e293b);
+  background-color: var(--ds-color-surface, #fff);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.jira-config__select:focus {
+  outline: none;
+  border-color: var(--ds-color-primary, #2563eb);
+  box-shadow: 0 0 0 3px var(--ds-color-primary-light, rgba(37, 99, 235, 0.12));
+}
+
+.jira-config__hint {
+  font-size: 12px;
+  color: var(--ds-color-text-tertiary, #94a3b8);
+}
+
+.jira-config__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ds-space-2, 8px);
+}
+
+.jira-config__jql-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-2, 8px);
+  margin-top: 4px;
+}
+
+.jira-config__date-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--ds-space-2, 8px);
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.jira-config__date-field {
+  flex: 1 1 140px;
+}
+
+.jira-config__date-input {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.jira-config__date-label {
+  font-size: 12px;
+  color: var(--ds-color-text-secondary, #64748b);
+}
+
+.jira-sprints__list {
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--ds-color-border, #e2e8f0);
+  border-radius: var(--ds-radius-md, 6px);
+  padding: 4px;
+  margin-top: 6px;
+}
+
+.jira-sprints__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.jira-sprints__item:hover {
+  background: var(--ds-color-surface-hover, #f1f5f9);
+}
+
+.jira-sprints__item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.jira-sprints__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.jira-sprints__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ds-color-text-primary, #1e293b);
+}
+
+.jira-sprints__meta {
+  font-size: 11px;
+  color: var(--ds-color-text-tertiary, #94a3b8);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.jira-sprints__badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: var(--ds-color-surface-hover, #f1f5f9);
+  color: var(--ds-color-text-secondary, #64748b);
+  text-transform: capitalize;
+}
+
+.jira-sprints__badge--active {
+  background: var(--ds-color-success-light, rgba(22, 163, 74, 0.12));
+  color: var(--ds-color-success, #16a34a);
+}
+
+.jira-sprints__badge--future {
+  background: var(--ds-color-primary-light, rgba(37, 99, 235, 0.12));
+  color: var(--ds-color-primary, #2563eb);
+}
+
+.jira-config__jql-result {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.jira-config__jql-result--ok {
+  color: var(--ds-color-success, #16a34a);
+}
+
+.jira-config__jql-result--error {
+  color: var(--ds-color-danger, #dc2626);
+}
+
+/* ===== Mode intégré (onglet Configuration › Jira) ===== */
+.jira-config-embedded {
+  max-width: 720px;
+}
+.jira-config-embedded__footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ds-color-border, #E3DBCC);
+  display: flex;
+  justify-content: flex-end;
+}

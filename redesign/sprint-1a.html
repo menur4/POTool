@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Création de sprint — 1A Feuille éditoriale</title>
+<style>
+@font-face { font-family: 'ABChanel'; src: url('fonts/ABChanelCorpo2022-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+:root{
+  --fg1:#0A0A0A; --fg2:#3A3730; --fg3:#5C5850; --fg-muted:#6B675E; --fg-faint:#8A857A;
+  --bg:#FFFFFF; --ivory:#F8F6F0; --hover:#FCFBF8; --range:#F1EDE4;
+  --line:#E5E1D8; --line-soft:#EFEBE2; --line-row:#F4F1EA; --line-strong:#9A9488;
+  --gold:#D4AF37;
+  --serif:'ABChanel', Georgia, serif; --sans:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --ease:cubic-bezier(0.25,0.46,0.45,0.94);
+}
+*{box-sizing:border-box}
+body{margin:0;background:#DEDAD1;font-family:var(--sans);color:var(--fg1);display:flex;justify-content:center;padding:56px 24px}
+button,input{font-family:inherit}
+input:focus,button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.sheet{width:860px;background:var(--bg);border:1px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.08)}
+.eyebrow{font-family:var(--serif);letter-spacing:.15em;text-transform:uppercase}
+/* header */
+.sheet-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 32px;background:var(--ivory);border-bottom:1px solid var(--line)}
+.sheet-head h2{margin:0;font-family:var(--serif);font-weight:300;font-size:17px;letter-spacing:.15em;text-transform:uppercase}
+.jira{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-faint);border-left:1px solid #DCD7CB;padding-left:16px}
+.icon-btn{border:0;background:transparent;font-size:18px;line-height:1;color:var(--fg-muted);cursor:pointer;padding:4px}
+.icon-btn:hover{color:var(--fg1)}
+/* accordion */
+.sec{border-bottom:1px solid var(--line-soft)}
+.sec:last-of-type{border-bottom:0}
+.sec-head{width:100%;display:flex;align-items:center;gap:18px;padding:20px 32px;background:transparent;border:0;cursor:pointer;text-align:left}
+.sec-head:hover{background:var(--hover)}
+.sec-num{font-family:var(--serif);font-size:11px;letter-spacing:.15em;color:var(--gold);width:18px}
+.sec-title{font-family:var(--serif);font-size:13px;letter-spacing:.15em;text-transform:uppercase;flex:1}
+.sec-sum{font-size:13px;color:var(--fg-muted)}
+.sec-sign{font-family:var(--serif);font-size:14px;color:var(--fg-faint);width:14px;text-align:right}
+.sec-body{padding:4px 32px 32px 68px;display:flex;flex-direction:column;gap:26px}
+.sec-body[hidden]{display:none}
+/* fields */
+.field{display:flex;flex-direction:column;gap:8px}
+.label{font-family:var(--serif);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--fg-muted)}
+.in-strong{border:0;border-bottom:1px solid var(--fg1);padding:6px 0;font-size:20px;background:transparent}
+.in-soft{border:0;border-bottom:1px solid #DCD7CB;padding:6px 0;font-size:15px;background:transparent}
+.chip{border:1px solid #DCD7CB;background:transparent;color:var(--fg-muted);font-size:11px;padding:5px 9px;cursor:pointer;transition:all 200ms var(--ease)}
+.chip.on{border-color:var(--fg1);background:var(--fg1);color:#fff}
+/* calendar */
+.cals{display:flex;gap:40px;border:1px solid var(--line-soft);padding:20px 24px}
+.cal{flex:1;display:flex;flex-direction:column;gap:10px}
+.cal-nav{display:flex;align-items:center;justify-content:space-between}
+.cal-nav button{border:0;background:transparent;cursor:pointer;font-size:15px;color:var(--fg-faint);padding:2px 6px}
+.cal-title{font-family:var(--serif);font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(7,1fr)}
+.grid.days{row-gap:2px}
+.head-cell{text-align:center;font-size:10px;letter-spacing:.08em;color:var(--fg-muted);padding-bottom:6px}
+.day{height:34px;border:0;background:transparent;color:var(--fg2);font-size:13px;cursor:pointer;transition:background 200ms var(--ease)}
+.day.we{color:#A8A398}
+.day.blank{cursor:default}
+.day.in{background:var(--range)}
+.day.edge{background:var(--fg1);color:#fff}
+.meta-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.pill{font-family:var(--serif);font-size:11px;letter-spacing:.15em;text-transform:uppercase;background:var(--fg1);color:#fff;padding:6px 12px}
+.link{border:0;background:transparent;font-size:12px;color:var(--fg-muted);text-decoration:underline;cursor:pointer;padding:0}
+.holiday{display:flex;gap:10px;align-items:center;background:var(--ivory);padding:12px 14px}
+.holiday input{border:1px solid #DCD7CB;background:#fff;padding:8px 10px;font-size:13px}
+/* team */
+.row{display:flex;align-items:center;gap:14px;padding:11px 6px;border-bottom:1px solid var(--line-row);min-height:52px;transition:background 200ms var(--ease)}
+.row:hover{background:var(--hover)}
+.box{width:18px;height:18px;flex:none;border:1px solid var(--line-strong);background:transparent;color:#fff;font-size:11px;line-height:1;cursor:pointer;padding:0}
+.row.on .box{border-color:var(--fg1);background:var(--fg1)}
+.avatar{width:28px;height:28px;flex:none;border-radius:50%;background:#F7F5F0;color:var(--fg-muted);font-size:10px;display:flex;align-items:center;justify-content:center}
+.row.on .avatar{background:var(--line-soft);color:var(--fg3)}
+.who{font-size:14px;width:210px;color:#A8A398}
+.row.on .who{color:var(--fg1)}
+.role{font-size:12px;color:var(--fg-muted);width:110px}
+.spacer{flex:1}
+.rest{font-size:13px;color:var(--fg3)}
+.edit{display:none;align-items:center;gap:14px}
+.row.on:hover .edit{display:flex}
+.row.on:hover .rest{display:none}
+.step{width:22px;height:22px;border:1px solid #DCD7CB;background:#fff;font-size:12px;line-height:1;cursor:pointer;padding:0}
+.off{font-size:13px;width:44px;text-align:center}
+/* constraints */
+.cons-row{display:flex;align-items:center;gap:20px}
+.cons-row .label{width:140px}
+.cons-row input[type=range]{flex:1;accent-color:var(--fg1)}
+.cons-pct{font-size:15px;width:60px;text-align:right}
+.cons-days{font-size:12px;color:var(--fg-muted);width:70px;text-align:right}
+/* capacity */
+.cap{display:flex;gap:40px;align-items:flex-start}
+.metrics{display:flex;gap:28px}
+.metric{display:flex;flex-direction:column;gap:6px}
+.metric span:first-child{font-family:var(--serif);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--fg-faint)}
+.metric span:last-child{font-size:22px;font-weight:300}
+.bar{display:flex;height:4px;background:var(--line-soft);overflow:hidden}
+.bar>div{background:var(--fg1);height:100%;transition:width 300ms var(--ease)}
+.legend{font-size:12px;color:var(--fg-faint)}
+.basket{width:240px;border:1px solid var(--fg1);padding:22px 24px;display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center}
+.basket .big{font-family:var(--serif);font-size:40px;font-weight:300;letter-spacing:.05em}
+.rule{width:28px;height:1px;background:var(--gold);margin:10px 0}
+/* footer */
+.foot{padding:18px 32px;background:var(--ivory);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.foot-note{font-size:12px;color:var(--fg-faint)}
+.confirm{display:flex;align-items:center;gap:14px;font-size:13px}
+.confirm button{border:0;background:transparent;font-size:13px;color:var(--fg-muted);text-decoration:underline;cursor:pointer}
+.btn{font-family:var(--serif);font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:12px 20px;cursor:pointer}
+.btn.ghost{border:1px solid #DCD7CB;background:transparent}
+.btn.ghost:hover{border-color:var(--fg1)}
+.btn.solid{border:1px solid var(--fg1);background:var(--fg1);color:#fff;padding:12px 22px}
+.btn.solid:hover{background:#2A2A2A}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="sheet-head">
+    <div style="display:flex;align-items:center;gap:16px">
+      <h2>Modifier le sprint</h2>
+      <span class="jira">Jira #24153 · auto</span>
+    </div>
+    <button class="icon-btn" data-act="askClose">×</button>
+  </div>
+
+  <div class="sec">
+    <button class="sec-head" data-toggle="info">
+      <span class="sec-num">01</span><span class="sec-title">Cadrage</span>
+      <span class="sec-sum" id="sum-info"></span><span class="sec-sign" id="sign-info">−</span>
+    </button>
+    <div class="sec-body" id="body-info">
+      <div style="display:flex;gap:24px">
+        <label class="field" style="flex:1">
+          <span class="label">Nom</span>
+          <input class="in-strong" id="name" value="Sprint 79">
+        </label>
+        <label class="field" style="flex:1.3">
+          <span class="label">Objectif · optionnel</span>
+          <input class="in-soft" id="goal" placeholder="Une phrase, si elle apporte quelque chose">
+        </label>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <span class="label">Période</span>
+          <div style="display:flex;gap:8px" id="presets"></div>
+        </div>
+        <div class="cals" id="cals"></div>
+        <div class="meta-row">
+          <span id="range-label"></span>
+          <span class="pill" id="workdays"></span>
+          <span style="font-size:12px;color:var(--fg-faint)">Fériés MA importés · week-ends exclus</span>
+          <button class="link" data-act="holiday">Ajouter un férié</button>
+        </div>
+        <div class="holiday" id="holiday" hidden>
+          <input placeholder="jj/mm/aaaa" style="width:120px">
+          <input placeholder="Nom du jour férié" style="flex:1">
+          <button class="btn solid" data-act="holiday">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <button class="sec-head" data-toggle="team">
+      <span class="sec-num">02</span><span class="sec-title">Équipe</span>
+      <span class="sec-sum" id="sum-team"></span><span class="sec-sign" id="sign-team">−</span>
+    </button>
+    <div class="sec-body" id="body-team" style="gap:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--fg-faint)">
+        <span>Congés importés · survolez une ligne pour ajuster</span>
+        <button class="link" data-act="allOn">Tout sélectionner</button>
+      </div>
+      <div id="team" style="border-top:1px solid var(--line-soft)"></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <button class="sec-head" data-toggle="cons">
+      <span class="sec-num">03</span><span class="sec-title">Contraintes</span>
+      <span class="sec-sum" id="sum-cons"></span><span class="sec-sign" id="sign-cons">+</span>
+    </button>
+    <div class="sec-body" id="body-cons" hidden style="gap:20px">
+      <p style="margin:0;font-size:13px;color:var(--fg-muted)">Reprises du sprint précédent. Ajustez seulement si nécessaire.</p>
+      <div id="cons" style="display:flex;flex-direction:column;gap:20px"></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <button class="sec-head" data-toggle="cap">
+      <span class="sec-num">04</span><span class="sec-title">Capacité</span>
+      <span class="sec-sum" id="sum-cap"></span><span class="sec-sign" id="sign-cap">−</span>
+    </button>
+    <div class="sec-body" id="body-cap">
+      <div class="cap">
+        <div style="flex:1;display:flex;flex-direction:column;gap:16px">
+          <div class="metrics" id="metrics"></div>
+          <div class="bar"><div id="bar"></div></div>
+          <div class="legend" id="legend"></div>
+        </div>
+        <div class="basket">
+          <span class="label">Panier recommandé</span>
+          <span class="big" id="sp"></span>
+          <span style="font-size:12px;color:var(--fg-muted)" id="sp-formula"></span>
+          <div class="rule"></div>
+          <span style="font-size:11px;color:var(--fg-faint)">Vélocité 1.5 SP/jour · 3 derniers sprints</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="foot-note" id="foot-note"></span>
+    <div class="confirm" id="confirm" hidden>
+      <span>Modifications non enregistrées.</span>
+      <button data-act="reallyClose">Fermer quand même</button>
+      <button data-act="stay" style="color:var(--fg1)">Rester</button>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button class="btn ghost" data-act="askClose">Annuler</button>
+      <button class="btn solid" data-act="save">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const VELOCITY = 1.5;
+const MONTHS = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+const SHORT = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+
+const state = {
+  start: '2026-09-04', end: '2026-09-17', pending: null, hoverDay: null,
+  anchorY: 2026, anchorM: 8,
+  open: { info: true, team: true, cons: false, cap: true },
+  holidayOpen: false, confirming: false, saved: false,
+  reunions: 10, bugs: 10, tnr: 5,
+  members: [
+    { id:1, name:'Abdessamad Bourouis', role:'Développeur', on:true, avail:100, off:0 },
+    { id:2, name:'Mohamed Amine El Ouadi', role:'Développeur', on:false, avail:100, off:0 },
+    { id:3, name:'Ayoub Kermaoui', role:'Développeur', on:true, avail:100, off:0 },
+    { id:4, name:'Loubna Khalid', role:'Développeur', on:true, avail:100, off:2 },
+    { id:5, name:'Yassine Maghfour', role:'Tech Lead', on:true, avail:100, off:0 },
+    { id:6, name:'Hamza Maroubi', role:'Développeur', on:true, avail:100, off:0 },
+    { id:7, name:'Ilyas Ouazzi', role:'Tech Lead', on:true, avail:50, off:0 },
+    { id:8, name:'Walid Ramadani', role:'Développeur', on:true, avail:100, off:1 }
+  ]
+};
+
+const d = iso => { const p = iso.split('-'); return new Date(Date.UTC(+p[0], +p[1]-1, +p[2])); };
+const isoOf = dt => dt.toISOString().slice(0,10);
+const addDays = (iso,n) => { const t = d(iso); t.setUTCDate(t.getUTCDate()+n); return isoOf(t); };
+const fmt = iso => { const t = d(iso); return t.getUTCDate() + ' ' + SHORT[t.getUTCMonth()]; };
+function workdays(st,en){ if(!st||!en) return 0; let n=0, cur=d(st), stop=d(en);
+  while(cur<=stop){ const w=cur.getUTCDay(); if(w!==0&&w!==6) n++; cur.setUTCDate(cur.getUTCDate()+1);} return n; }
+
+function derive(){
+  const wd = workdays(state.start, state.end);
+  const sel = state.members.filter(m => m.on);
+  const gross = sel.reduce((t,m) => t + Math.max(0, wd*m.avail/100 - m.off), 0);
+  const pct = (state.reunions + state.bugs + state.tnr) / 100;
+  const net = gross * (1 - pct);
+  return { wd, sel, gross, pct, net, sp: Math.round(net*VELOCITY) };
+}
+
+const $ = s => document.querySelector(s);
+
+function renderCalendars(){
+  const { start, end, pending, hoverDay } = state;
+  const lo = start;
+  const hi = end || (pending ? (hoverDay && hoverDay > pending ? hoverDay : pending) : null);
+  let html = '';
+  for (let i=0;i<2;i++){
+    let m = state.anchorM + i, y = state.anchorY;
+    if (m > 11){ m -= 12; y++; }
+    const lead = (new Date(Date.UTC(y,m,1)).getUTCDay() + 6) % 7;
+    const dim = new Date(Date.UTC(y,m+1,0)).getUTCDate();
+    let cells = '';
+    for (let j=0;j<lead;j++) cells += '<button class="day blank"></button>';
+    for (let day=1;day<=dim;day++){
+      const iso = y + '-' + String(m+1).padStart(2,'0') + '-' + String(day).padStart(2,'0');
+      const w = new Date(Date.UTC(y,m,day)).getUTCDay();
+      const cls = ['day'];
+      if (w===0||w===6) cls.push('we');
+      if (lo && hi && iso >= lo && iso <= hi) cls.push('in');
+      if (iso === lo || (hi && iso === hi)) cls.push('edge');
+      cells += '<button class="'+cls.join(' ')+'" data-day="'+iso+'">'+day+'</button>';
+    }
+    html += '<div class="cal"><div class="cal-nav">'
+      + '<button data-shift="-1"'+(i?' style="visibility:hidden"':'')+'>‹</button>'
+      + '<span class="cal-title">'+MONTHS[m]+' '+y+'</span>'
+      + '<button data-shift="1"'+(i?'':' style="visibility:hidden"')+'>›</button></div>'
+      + '<div class="grid">'+['L','M','M','J','V','S','D'].map(x=>'<div class="head-cell">'+x+'</div>').join('')+'</div>'
+      + '<div class="grid days">'+cells+'</div></div>';
+  }
+  $('#cals').innerHTML = html;
+}
+
+function renderTeam(){
+  const wd = derive().wd;
+  $('#team').innerHTML = state.members.map(m => {
+    const ini = m.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    const opts = [100,50,25].map(v => '<button class="chip'+(m.avail===v?' on':'')+'" data-avail="'+m.id+':'+v+'">'+v+'%</button>').join('');
+    return '<div class="row'+(m.on?' on':'')+'">'
+      + '<button class="box" data-member="'+m.id+'">'+(m.on?'✓':'')+'</button>'
+      + '<span class="avatar">'+ini+'</span>'
+      + '<span class="who">'+m.name+'</span>'
+      + '<span class="role">'+m.role+'</span><span class="spacer"></span>'
+      + (m.on
+          ? '<span class="rest">'+m.avail+'%'+(m.off?' · '+m.off+'j off':'')+'</span>'
+            + '<div class="edit"><div style="display:flex;gap:4px">'+opts+'</div>'
+            + '<div style="display:flex;align-items:center;gap:6px">'
+            + '<button class="step" data-off="'+m.id+':-1">−</button>'
+            + '<span class="off">'+m.off+'j off</span>'
+            + '<button class="step" data-off="'+m.id+':1">+</button></div></div>'
+          : '<span class="rest" style="color:var(--fg-muted)">Hors sprint</span>')
+      + '</div>';
+  }).join('');
+  $('#team').dataset.wd = wd;
+}
+
+function renderCons(){
+  const { gross } = derive();
+  const defs = [['Réunions','reunions'],['Bugs / incidents','bugs'],['TNR','tnr']];
+  $('#cons').innerHTML = defs.map(c =>
+    '<div class="cons-row"><span class="label">'+c[0]+'</span>'
+    + '<input type="range" min="0" max="40" step="5" value="'+state[c[1]]+'" data-cons="'+c[1]+'">'
+    + '<span class="cons-pct">'+state[c[1]]+'%</span>'
+    + '<span class="cons-days">'+(gross*state[c[1]]/100).toFixed(1)+' j</span></div>').join('');
+}
+
+function renderPresets(){
+  const wd = derive().wd;
+  $('#presets').innerHTML = [[1,'1 semaine'],[2,'2 semaines'],[3,'3 semaines']].map(p => {
+    const on = wd === workdays(state.start, addDays(state.start, p[0]*7-3));
+    return '<button class="chip'+(on?' on':'')+'" data-preset="'+p[0]+'">'+p[1]+'</button>';
+  }).join('');
+}
+
+function render(){
+  const { wd, sel, gross, pct, net, sp } = derive();
+  renderCalendars(); renderTeam(); renderCons(); renderPresets();
+
+  $('#range-label').textContent = state.end ? fmt(state.start)+' → '+fmt(state.end) : fmt(state.start)+' → sélectionnez la fin';
+  $('#workdays').textContent = wd + ' jours ouvrés';
+  $('#sum-info').textContent = fmt(state.start)+' → '+(state.end?fmt(state.end):'…')+' · '+wd+' j ouvrés';
+  $('#sum-team').textContent = sel.length+' membres · '+gross.toFixed(1)+' j bruts';
+  $('#sum-cons').textContent = Math.round(pct*100)+'% · réunions, bugs, TNR';
+  $('#sum-cap').textContent = net.toFixed(1)+' j nets · '+sp+' SP';
+
+  $('#metrics').innerHTML = [
+    ['Jours ouvrés', wd+' j'], ['Capacité brute', gross.toFixed(1)+' j'],
+    ['Contraintes', '−'+(gross-net).toFixed(1)+' j'], ['Capacité nette', net.toFixed(1)+' j']
+  ].map(k => '<div class="metric"><span>'+k[0]+'</span><span>'+k[1]+'</span></div>').join('');
+  $('#bar').style.width = Math.round((1-pct)*100)+'%';
+  $('#legend').textContent = Math.round((1-pct)*100)+'% de capacité nette · réunions '
+    +(gross*state.reunions/100).toFixed(1)+' j · bugs '+(gross*state.bugs/100).toFixed(1)
+    +' j · TNR '+(gross*state.tnr/100).toFixed(1)+' j';
+  $('#sp').textContent = sp+' SP';
+  $('#sp-formula').textContent = net.toFixed(1)+' j × '+VELOCITY+' SP/j';
+
+  ['info','team','cons','cap'].forEach(k => {
+    $('#body-'+k).hidden = !state.open[k];
+    $('#sign-'+k).textContent = state.open[k] ? '−' : '+';
+  });
+  $('#holiday').hidden = !state.holidayOpen;
+  $('#confirm').hidden = !state.confirming;
+  $('#foot-note').hidden = state.confirming;
+  $('#foot-note').textContent = state.saved ? 'Enregistré · '+sp+' SP' : 'Brouillon repris du sprint 78 · tout est pré-rempli';
+}
+
+function touch(){ state.saved = false; }
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-toggle],[data-act],[data-day],[data-shift],[data-member],[data-avail],[data-off],[data-preset]');
+  if (!t) return;
+  const wd = derive().wd;
+  if (t.dataset.toggle) state.open[t.dataset.toggle] = !state.open[t.dataset.toggle];
+  else if (t.dataset.act === 'askClose') state.confirming = !state.saved;
+  else if (t.dataset.act === 'stay') state.confirming = false;
+  else if (t.dataset.act === 'reallyClose') { state.confirming = false; state.saved = true; }
+  else if (t.dataset.act === 'save') { state.saved = true; state.confirming = false; }
+  else if (t.dataset.act === 'holiday') state.holidayOpen = !state.holidayOpen;
+  else if (t.dataset.act === 'allOn') { state.members.forEach(m => m.on = true); touch(); }
+  else if (t.dataset.shift) { let m = state.anchorM + (+t.dataset.shift), y = state.anchorY;
+    if (m < 0){ m = 11; y--; } if (m > 11){ m = 0; y++; } state.anchorM = m; state.anchorY = y; }
+  else if (t.dataset.day) {
+    const iso = t.dataset.day;
+    if (!state.pending) { state.pending = iso; state.start = iso; state.end = null; state.hoverDay = iso; }
+    else { const lo = iso < state.pending ? iso : state.pending, hi = iso < state.pending ? state.pending : iso;
+      state.start = lo; state.end = hi; state.pending = null; state.hoverDay = null; }
+    touch();
+  }
+  else if (t.dataset.preset) { state.end = addDays(state.start, (+t.dataset.preset)*7-3); state.pending = null; touch(); }
+  else if (t.dataset.member) { const m = state.members.find(x => x.id === +t.dataset.member); m.on = !m.on; touch(); }
+  else if (t.dataset.avail) { const [id,v] = t.dataset.avail.split(':').map(Number);
+    state.members.find(x => x.id === id).avail = v; touch(); }
+  else if (t.dataset.off) { const [id,delta] = t.dataset.off.split(':').map(Number);
+    const m = state.members.find(x => x.id === id); m.off = Math.min(wd, Math.max(0, m.off + delta)); touch(); }
+  render();
+});
+
+document.addEventListener('mouseover', e => {
+  const c = e.target.closest('[data-day]');
+  if (c && state.pending && state.hoverDay !== c.dataset.day) { state.hoverDay = c.dataset.day; renderCalendars(); }
+});
+
+document.addEventListener('input', e => {
+  if (e.target.dataset.cons) { state[e.target.dataset.cons] = +e.target.value; touch(); render(); }
+});
+
+render();
+</script>
+</body>
+</html>

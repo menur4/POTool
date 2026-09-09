@@ -1,0 +1,224 @@
+/* ==========================================================================
+   TeamMemberSelector Component Styles — Card grid layout
+   ========================================================================== */
+
+.team-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-spacing-sm, 0.5rem);
+}
+
+.team-selector--disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Header */
+.team-selector__header {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-md, 1rem);
+}
+
+.team-selector__search {
+  flex: 1;
+}
+
+.team-selector__count {
+  font-size: var(--ds-font-size-sm, 0.875rem);
+  font-weight: var(--ds-font-weight-medium, 500);
+  color: var(--ds-color-text-secondary, #6B7280);
+  white-space: nowrap;
+  padding: var(--ds-spacing-xs, 0.25rem) var(--ds-spacing-sm, 0.5rem);
+  background: var(--ds-color-background-tertiary, #F3F4F6);
+  border-radius: var(--ds-radius-full, 9999px);
+}
+
+.team-selector__empty {
+  text-align: center;
+  padding: var(--ds-spacing-xl, 2rem);
+  color: var(--ds-color-text-muted, #9CA3AF);
+  font-size: var(--ds-font-size-sm, 0.875rem);
+}
+
+/* ========== Card Grid ========== */
+.team-selector__grid {
+  display: grid;
+  /* Colonnes adaptatives : cartes assez larges (pas de troncature),
+     plusieurs par ligne pour limiter le défilement. */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--ds-spacing-sm, 0.5rem);
+  padding-right: var(--ds-spacing-xs, 0.25rem);
+}
+
+/* Card */
+.team-selector__card {
+  background: var(--ds-color-background, #fff);
+  border: 1px solid var(--ds-color-border, #E5E7EB);
+  border-radius: var(--ds-radius-lg, 12px);
+  overflow: hidden;
+  transition: box-shadow var(--ds-transition-fast, 150ms ease),
+              border-color var(--ds-transition-fast, 150ms ease);
+  cursor: pointer;
+}
+
+.team-selector__card:hover {
+  border-color: var(--ds-color-primary, #4F46E5);
+  box-shadow: var(--ds-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+}
+
+.team-selector__card--selected {
+  border-color: var(--ds-color-primary, #4F46E5);
+  background: var(--ds-color-primary-light, #EEF2FF);
+}
+
+/* Card header — avatar + checkbox */
+.team-selector__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ds-spacing-xs, 0.25rem) var(--ds-spacing-sm, 0.5rem);
+  background: var(--ds-color-background-secondary, #F9FAFB);
+  border-bottom: 1px solid var(--ds-color-border-light, #F3F4F6);
+}
+
+.team-selector__card--selected .team-selector__card-header {
+  background: rgba(79, 70, 229, 0.08);
+}
+
+.team-selector__card-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--ds-radius-full, 9999px);
+  object-fit: cover;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Card body — name + role */
+.team-selector__card-body {
+  padding: var(--ds-spacing-xs, 0.25rem) var(--ds-spacing-sm, 0.5rem);
+  cursor: pointer;
+}
+
+.team-selector__card-name {
+  font-size: var(--ds-font-size-sm, 0.875rem);
+  font-weight: var(--ds-font-weight-semibold, 600);
+  color: var(--ds-color-text-primary, #1F2937);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.team-selector__card-role {
+  font-size: var(--ds-font-size-xs, 0.75rem);
+  color: var(--ds-color-text-secondary, #6B7280);
+}
+
+/* Card footer — availability controls */
+.team-selector__card-footer {
+  display: flex;
+  gap: var(--ds-spacing-sm, 0.5rem);
+  padding: var(--ds-spacing-sm, 0.5rem);
+  border-top: 1px solid var(--ds-color-border-light, #F3F4F6);
+  background: var(--ds-color-background-secondary, #F9FAFB);
+}
+
+.team-selector__card--selected .team-selector__card-footer {
+  background: rgba(79, 70, 229, 0.04);
+}
+
+.team-selector__control {
+  min-width: 0;
+}
+
+.team-selector__control:first-child {
+  flex: 3;
+}
+
+.team-selector__control:last-child {
+  flex: 2;
+}
+
+.team-selector__control-label {
+  display: block;
+  font-size: var(--ds-font-size-xs, 0.75rem);
+  font-weight: var(--ds-font-weight-medium, 500);
+  color: var(--ds-color-text-secondary, #6B7280);
+  margin-bottom: 4px;
+}
+
+.team-selector__control-row {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-xs, 0.25rem);
+}
+
+/* Le champ est un <Input> du design system : c'est le .input-wrapper qui est
+   l'enfant flex réel — il doit pouvoir rétrécir sinon il déborde de la carte. */
+.team-selector__control-row .input-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.team-selector__control-row .input,
+.team-selector__control-row input {
+  width: 100%;
+  min-width: 0;
+  font-size: var(--ds-font-size-sm, 0.875rem);
+}
+
+.team-selector__control-unit {
+  font-size: var(--ds-font-size-sm, 0.875rem);
+  color: var(--ds-color-text-muted, #9CA3AF);
+  flex-shrink: 0;
+}
+
+/* Quick 50% button */
+.team-selector__quick-btn {
+  flex-shrink: 0;
+  padding: 4px 8px;
+  border: 1px solid var(--ds-color-border, #E5E7EB);
+  border-radius: var(--ds-radius-sm, 4px);
+  background: var(--ds-color-background, #FFFFFF);
+  color: var(--ds-color-text-secondary, #6B7280);
+  font-size: var(--ds-font-size-xs, 0.75rem);
+  font-weight: var(--ds-font-weight-medium, 500);
+  cursor: pointer;
+  transition: all var(--ds-transition-fast, 150ms ease);
+  min-height: 28px;
+  line-height: 1;
+}
+
+.team-selector__quick-btn:hover {
+  border-color: var(--ds-color-primary, #4F46E5);
+  color: var(--ds-color-primary, #4F46E5);
+  background: var(--ds-color-primary-light, #EEF2FF);
+}
+
+.team-selector__quick-btn--active {
+  border-color: var(--ds-color-primary, #4F46E5);
+  color: white;
+  background: var(--ds-color-primary, #4F46E5);
+}
+
+.team-selector__quick-btn--active:hover {
+  background: var(--ds-color-primary-dark, #4338CA);
+  color: white;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 640px) {
+  .team-selector__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .team-selector__count {
+    text-align: center;
+  }
+
+  .team-selector__grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}

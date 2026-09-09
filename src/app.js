@@ -16,7 +16,13 @@ const { connectDB } = require('./config/database');
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
 const teamMembersRoutes = require('./routes/teamMembers.routes');
+const sprintRoutes = require('./routes/sprint.routes');
+const epicRoutes = require('./routes/epic.routes');
+const holidayRoutes = require('./routes/holiday.routes');
 const uploadRoutes = require('./routes/upload.routes');
+const statusMappingRoutes = require('./routes/statusMapping.routes');
+const jiraRoutes = require('./routes/jira.routes');
+const timeoffRoutes = require('./routes/timeoff.routes');
 const devRoutes = require('./routes/dev.routes'); // Routes pour le développement
 
 // Charger les variables d'environnement
@@ -95,8 +101,24 @@ app.use('/api/auth', authRoutes);
 // Routes des membres d'équipe
 app.use('/api/team-members', teamMembersRoutes);
 
+// Routes des sprints
+app.use('/api/sprints', sprintRoutes);
+
+// Routes des epics
+app.use('/api/epics', epicRoutes);
+
+// Routes des jours fériés
+app.use('/api/holidays', holidayRoutes);
+
 // Routes d'upload de fichiers
 app.use('/api/upload', uploadRoutes);
+
+// Routes de mapping des statuts Jira
+app.use('/api/status-mappings', statusMappingRoutes);
+
+// Routes d'intégration Jira
+app.use('/api/jira', jiraRoutes);
+app.use('/api/timeoff', timeoffRoutes);
 
 // Servir les fichiers statiques du dossier uploads avec les en-têtes CORS appropriés
 app.use('/uploads', (req, res, next) => {

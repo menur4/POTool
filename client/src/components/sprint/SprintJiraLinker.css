@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Lien Jira — pastille bleue « Jira » (état lié / à lier) + éditeur
+   ========================================================================== */
+
+.sjira-pill {
+  --jira-blue: #0052CC;
+  --jira-blue-hover: #0747A6;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 14px;
+  border: 1px solid var(--jira-blue);
+  border-radius: 6px;
+  background: var(--jira-blue);
+  color: #fff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 160ms ease, box-shadow 160ms ease;
+  align-self: flex-start;
+}
+.sjira-pill:hover:not(:disabled) {
+  background: var(--jira-blue-hover);
+  box-shadow: 0 2px 8px rgba(0, 82, 204, 0.28);
+}
+.sjira-pill:disabled { opacity: 0.7; cursor: default; }
+
+.sjira-pill__logo {
+  display: inline-flex;
+  background: #fff;
+  border-radius: 4px;
+  padding: 2px;
+  line-height: 0;
+}
+.sjira-pill__text b { font-weight: 700; }
+.sjira-pill__check { font-size: 13px; color: #79E2A8; }
+
+/* Variante « à lier » : contour bleu sur fond blanc (moins affirmé) */
+.sjira-pill:not(.sjira-pill--linked) {
+  background: #fff;
+  color: var(--jira-blue);
+}
+.sjira-pill:not(.sjira-pill--linked):hover:not(:disabled) {
+  background: #F0F6FF;
+  box-shadow: none;
+}
+
+.sjira-pill__spin {
+  width: 13px;
+  height: 13px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: sjira-spin 0.7s linear infinite;
+}
+@keyframes sjira-spin { to { transform: rotate(360deg); } }
+
+/* ===== Éditeur d'association ===== */
+.sjira-editor {
+  border: 1px solid #DCE4F0;
+  border-radius: 6px;
+  background: #F7FAFF;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: stretch;
+}
+.sjira-editor__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #0052CC;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.sjira-editor__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.sjira-select {
+  flex: 1;
+  min-width: 220px;
+  border: 1px solid #C7D3E6;
+  border-radius: 5px;
+  background: #fff;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  color: #172B4D;
+}
+.sjira-select:focus-visible { outline: 2px solid #2684FF; outline-offset: 1px; }
+
+.sjira-confirm {
+  border: 1px solid #0052CC;
+  border-radius: 5px;
+  background: #0052CC;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+.sjira-confirm:hover:not(:disabled) { background: #0747A6; }
+.sjira-confirm:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.sjira-cancel {
+  border: 0;
+  background: transparent;
+  color: #5E6C84;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 8px 6px;
+}
+.sjira-cancel:hover { color: #172B4D; }

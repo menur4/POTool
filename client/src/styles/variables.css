@@ -1,0 +1,157 @@
+/* ==========================================================================
+   Design System Variables - POTool
+   Following Apple Human Interface Guidelines
+   ========================================================================== */
+
+:root {
+  /* -------------------------------------------------------------------------
+     Touch Targets (Apple HIG: minimum 44x44pt)
+     ------------------------------------------------------------------------- */
+  --ds-touch-target-min: 44px;
+
+  /* -------------------------------------------------------------------------
+     Spacing Scale
+     ------------------------------------------------------------------------- */
+  --ds-spacing-xs: 0.25rem;   /* 4px */
+  --ds-spacing-sm: 0.5rem;    /* 8px */
+  --ds-spacing-md: 1rem;      /* 16px */
+  --ds-spacing-lg: 1.5rem;    /* 24px */
+  --ds-spacing-xl: 2rem;      /* 32px */
+  --ds-spacing-2xl: 3rem;     /* 48px */
+
+  /* -------------------------------------------------------------------------
+     Colors - Primary
+     ------------------------------------------------------------------------- */
+  /* Palette Chanel : noir doux dominant + beige, accent or */
+  --ds-color-primary: #1A1A1A;
+  --ds-color-primary-hover: #000000;
+  --ds-color-primary-light: #EFEAE0;
+
+  /* -------------------------------------------------------------------------
+     Colors - Semantic
+     ------------------------------------------------------------------------- */
+  --ds-color-success: #22C55E;
+  --ds-color-success-light: #DCFCE7;
+  --ds-color-warning: #F59E0B;
+  --ds-color-warning-light: #FEF3C7;
+  --ds-color-danger: #EF4444;
+  --ds-color-danger-light: #FEE2E2;
+  --ds-color-info: #3B82F6;
+  --ds-color-info-light: #DBEAFE;
+
+  /* -------------------------------------------------------------------------
+     Colors - Neutral
+     ------------------------------------------------------------------------- */
+  --ds-color-text-primary: #1A1A1A;
+  --ds-color-text-secondary: #6B6459;
+  --ds-color-text-muted: #A69E90;
+  --ds-color-border: #E3DBCC;
+  --ds-color-border-light: #EFEADF;
+  --ds-color-background: #FFFFFF;
+  --ds-color-background-secondary: #F5F0E6;
+  --ds-color-background-tertiary: #EDE6D8;
+
+  /* -------------------------------------------------------------------------
+     Border Radius
+     ------------------------------------------------------------------------- */
+  --ds-radius-sm: 4px;
+  --ds-radius-md: 8px;
+  --ds-radius-lg: 12px;
+  --ds-radius-xl: 16px;
+  --ds-radius-full: 9999px;
+
+  /* -------------------------------------------------------------------------
+     Shadows
+     ------------------------------------------------------------------------- */
+  --ds-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ds-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --ds-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --ds-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* -------------------------------------------------------------------------
+     Typography
+     ------------------------------------------------------------------------- */
+  --ds-font-family: 'AB Chanel Corpo', 'Helvetica Neue', Arial, sans-serif;
+
+  /* -------------------------------------------------------------------------
+     Surcharge des tokens du design system (chanel-modern) : fonds beige + police
+     ------------------------------------------------------------------------- */
+  --chanel-modern-bg-secondary: #F5F0E6;
+  --chanel-modern-bg-tertiary: #EDE6D8;
+  --chanel-modern-font-sans-serif: 'AB Chanel Corpo', 'Helvetica Neue', 'Inter', Arial, sans-serif;
+  --ds-font-size-xs: 0.75rem;   /* 12px */
+  --ds-font-size-sm: 0.875rem;  /* 14px */
+  --ds-font-size-md: 1rem;      /* 16px */
+  --ds-font-size-lg: 1.125rem;  /* 18px */
+  --ds-font-size-xl: 1.25rem;   /* 20px */
+  --ds-font-size-2xl: 1.5rem;   /* 24px */
+  --ds-font-size-3xl: 1.875rem; /* 30px */
+
+  --ds-font-weight-normal: 400;
+  --ds-font-weight-medium: 500;
+  --ds-font-weight-semibold: 600;
+  --ds-font-weight-bold: 700;
+
+  --ds-line-height-tight: 1.25;
+  --ds-line-height-normal: 1.5;
+  --ds-line-height-relaxed: 1.75;
+
+  /* -------------------------------------------------------------------------
+     Transitions
+     ------------------------------------------------------------------------- */
+  --ds-transition-fast: 150ms ease;
+  --ds-transition-normal: 250ms ease;
+  --ds-transition-slow: 350ms ease;
+
+  /* -------------------------------------------------------------------------
+     Z-Index Scale
+     ------------------------------------------------------------------------- */
+  --ds-z-dropdown: 1000;
+  --ds-z-sticky: 1020;
+  --ds-z-fixed: 1030;
+  --ds-z-modal-backdrop: 1040;
+  --ds-z-modal: 1050;
+  --ds-z-popover: 1060;
+  --ds-z-tooltip: 1070;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Touch target enforcement */
+.touch-target {
+  min-height: var(--ds-touch-target-min);
+  min-width: var(--ds-touch-target-min);
+}
+
+/* Form row with gap */
+.form-row {
+  display: flex;
+  gap: var(--ds-spacing-md);
+}
+
+.form-row > * {
+  flex: 1;
+}
+
+/* Form section */
+.form-section {
+  margin-bottom: var(--ds-spacing-lg);
+}
+
+.form-section__title {
+  font-size: var(--ds-font-size-md);
+  font-weight: var(--ds-font-weight-semibold);
+  color: var(--ds-color-text-primary);
+  margin-bottom: var(--ds-spacing-md);
+  padding-bottom: var(--ds-spacing-sm);
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+/* Responsive form rows */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+}

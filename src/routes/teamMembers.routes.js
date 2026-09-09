@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { 
-  getTeamMembers, 
-  getTeamMember, 
-  createTeamMember, 
-  updateTeamMember, 
+const {
+  getTeamMembers,
+  getTeamMember,
+  createTeamMember,
+  updateTeamMember,
   deleteTeamMember,
-  toggleTeamMemberStatus
+  toggleTeamMemberStatus,
+  reorderTeamMembers
 } = require('../controllers/teamMembers.controller');
 const { protect, restrictTo } = require('../middleware/auth.middleware');
 
@@ -14,6 +15,10 @@ const { protect, restrictTo } = require('../middleware/auth.middleware');
 // router.use(protect);
 
 // Routes pour les membres de l'équipe
+// Réordonnancement (doit précéder /:id pour éviter la capture par le paramètre)
+router.route('/reorder')
+  .patch(reorderTeamMembers);
+
 router.route('/')
   .get(getTeamMembers)
   // Temporairement désactivé pour le développement

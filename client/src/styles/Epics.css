@@ -1,0 +1,1701 @@
+/* Styles pour la page Epics */
+
+.epics-page {
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header */
+.epics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.epics-header__title h1 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.epics-header__subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.epics-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.epics-header__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  height: 44px;
+  padding: 0 0.875rem;
+  border: 1px solid #D4D4D4;
+  border-radius: 6px;
+  background: #fff;
+  color: #6B7280;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.epics-header__icon-btn:hover {
+  border-color: #A3A3A3;
+  color: #1F2937;
+  background: #F9FAFB;
+}
+
+.epics-header__icon-btn-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Filters */
+.epics-filters {
+  margin-bottom: 1.5rem;
+  overflow: visible !important; /* Needed for MultiSelectFilter dropdown to show outside the Card */
+}
+
+.epics-filters__header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.epics-filters__search {
+  flex: 1;
+  min-width: 200px;
+}
+
+.epics-filters__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  height: 44px;
+  padding: 0 0.875rem;
+  border: 1px solid #D4D4D4;
+  border-radius: 6px;
+  background: #fff;
+  color: #6B7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.epics-filters__toggle:hover,
+.epics-filters__toggle--open {
+  border-color: #A3A3A3;
+  color: #1F2937;
+  background: #F9FAFB;
+}
+
+.epics-filters__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 0.3rem;
+  background: #3B82F6;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 9px;
+}
+
+.epics-filters__chevron {
+  font-size: 0.7rem;
+  margin-left: 0.125rem;
+}
+
+.epics-filters__row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #F3F4F6;
+}
+
+.epics-filters__row > * {
+  min-width: 150px;
+}
+
+/* Stats */
+.epics-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.epics-stats__card {
+  text-align: center;
+  padding: 1rem !important;
+}
+
+.epics-stats__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.epics-stats__label {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.epics-stats__value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.epics-stats__value--success {
+  color: #27ae60;
+}
+
+.epics-stats__card--delivered {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border: 1px solid #81c784;
+}
+
+.epics-stats__delta {
+  font-size: 0.75rem;
+  color: #2e7d32;
+  font-weight: 500;
+  margin-top: 0.125rem;
+}
+
+/* Tab count badge */
+.epics-tab__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.epics-tab__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 18px;
+  padding: 0 0.35rem;
+  background: #E5E7EB;
+  color: #374151;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 9px;
+}
+
+/* List */
+.epics-list {
+  min-height: 400px;
+}
+
+.epics-list__loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.epics-list__empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  gap: 1rem;
+  color: #666;
+}
+
+/* Table */
+.epics-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.epics-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #666;
+  border-bottom: 2px solid #e5e5e5;
+  background: #fafafa;
+}
+
+.epics-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e5e5;
+  vertical-align: middle;
+}
+
+.epics-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.epics-table__key {
+  font-family: monospace;
+  font-weight: 500;
+  color: #3498db;
+  text-decoration: none;
+}
+
+.epics-table__key:hover {
+  text-decoration: underline;
+}
+
+.epics-table__key-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.epics-table__key-wrap--child {
+  padding-left: 0.25rem;
+}
+
+.epics-table__collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #9CA3AF;
+  cursor: pointer;
+  border-radius: 3px;
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  transition: color 0.15s, background 0.15s;
+}
+
+.epics-table__collapse-btn:hover {
+  color: #3B82F6;
+  background: #EFF6FF;
+}
+
+.epics-table__collapse-spacer {
+  display: inline-block;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+/* Vertical line connector for child rows */
+.epics-table__child-connector {
+  display: inline-block;
+  width: 16px;
+  height: 1.25em;
+  flex-shrink: 0;
+  border-left: 2px solid #E5E7EB;
+  border-bottom: 2px solid #E5E7EB;
+  margin-right: 0.125rem;
+  border-bottom-left-radius: 3px;
+  vertical-align: middle;
+}
+
+.epics-table__title {
+  display: block;
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.epics-table__title--child {
+  color: #4B5563;
+  font-size: 0.9rem;
+  padding-left: 1.75rem;
+}
+
+/* Override AdvancedDataGrid .data-grid__td--image overflow for all cells */
+.epics-data-grid .data-grid__td--image {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.epics-table__points {
+  text-align: center;
+  font-weight: 500;
+}
+
+.epics-table__points--empty {
+  color: #C0C0C0;
+  font-weight: 400;
+}
+
+/* Sortable column header button */
+.epics-table__sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.epics-table__sort-btn:hover {
+  color: #3B82F6;
+}
+
+.epics-table__sort-icon--idle {
+  opacity: 0.3;
+  font-size: 0.7rem;
+}
+
+.epics-table__delivered {
+  white-space: nowrap;
+}
+
+.epics-table__delivered .delivered-sp {
+  color: #27ae60;
+  font-weight: 600;
+}
+
+.epics-table__delivered .total-sp {
+  color: #888;
+  font-weight: 400;
+}
+
+.epics-table__actions {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: center;
+}
+
+/* Hidden until row hover — works when the parent grid/table passes :hover to the row */
+.epics-table__actions--hover-only {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+/* Design system AdvancedDataGrid uses .data-grid__row */
+.data-grid__row:hover .epics-table__actions--hover-only,
+tr:hover .epics-table__actions--hover-only {
+  opacity: 1;
+}
+
+.epics-table__action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.epics-table__action-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.epics-table__action-btn--edit:hover {
+  color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.epics-table__action-btn--delete:hover {
+  color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.epics-table__type {
+  text-align: center;
+}
+
+.epics-table__type-icon {
+  font-size: 0.7rem;
+  margin-right: 0.2rem;
+}
+
+/* Remove border from issue type badges */
+.epics-table__type-badge {
+  border-color: transparent !important;
+}
+
+/* Override design system badge for Epic type (violet instead of black) */
+.epics-table__type-badge--epic {
+  background: #EDE9FE !important;
+  color: #5B21B6 !important;
+  border-color: transparent !important;
+}
+
+
+.epics-table__parent {
+  max-width: 200px;
+  font-size: 0.85rem;
+  color: #8e44ad;
+}
+
+.epics-table__parent span {
+  cursor: help;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.epics-table__labels {
+  max-width: 200px;
+}
+
+.epics-table__tags {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+  align-items: center;
+  overflow: hidden;
+}
+
+.epics-table__tags-more {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  color: #6B7280;
+  background: #F3F4F6;
+  border-radius: 10px;
+  padding: 0.1rem 0.4rem;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.epics-table__tags--centered {
+  justify-content: center;
+}
+
+.epics-table__more-tags {
+  font-size: 0.75rem;
+  color: #666;
+  font-style: italic;
+  padding: 0.125rem 0.375rem;
+}
+
+/* Pagination */
+.epics-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 1rem;
+}
+
+.epics-pagination__info {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Charts */
+.epics-charts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.epics-charts__card {
+  padding: 1.5rem;
+}
+
+.epics-charts__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--ds-color-text-primary, #1a1a1a);
+}
+
+.epics-charts__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  color: var(--ds-color-text-secondary, #6b7280);
+}
+
+/* ===== Roadmap ===== */
+.epics-roadmap {
+  overflow-x: auto;
+  padding: 1.5rem;
+}
+
+.epics-roadmap__loading,
+.epics-roadmap__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  color: var(--ds-color-text-secondary, #6b7280);
+}
+
+/* Timeline header */
+.epics-roadmap__timeline {
+  display: flex;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* Navigation controls */
+.epics-roadmap__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.epics-roadmap__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  color: #374151;
+  font-size: 0.8rem;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.epics-roadmap__nav-btn:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.epics-roadmap__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.epics-roadmap__controls-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+  min-width: 120px;
+  text-align: center;
+}
+
+.epics-roadmap__count-select {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  color: #374151;
+  background: #fff;
+  cursor: pointer;
+}
+
+.epics-roadmap__view-toggle {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.epics-roadmap__view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  color: #6b7280;
+  font-size: 0.9rem;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.epics-roadmap__view-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.epics-roadmap__view-btn--active {
+  background: #EEF2FF;
+  border-color: #6366F1;
+  color: #6366F1;
+}
+
+.epics-roadmap__labels-col {
+  /* width controlled by inline style */
+}
+
+.epics-roadmap__header-label {
+  height: 48px;
+}
+
+.epics-roadmap__chart-col {
+  flex: 1;
+  position: relative;
+  min-width: 400px;
+}
+
+.epics-roadmap__sprints-header {
+  position: relative;
+  height: 48px;
+}
+
+.epics-roadmap__sprint-col {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  border-left: 1px solid #e5e7eb;
+  box-sizing: border-box;
+}
+
+.epics-roadmap__sprint-col:last-child {
+  border-right: 1px solid #e5e7eb;
+}
+
+.epics-roadmap__sprint-col--active {
+  background: rgba(99, 102, 241, 0.06);
+}
+
+.epics-roadmap__sprint-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.epics-roadmap__sprint-dates {
+  font-size: 0.65rem;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+/* Sprint background columns */
+.epics-roadmap__sprint-backgrounds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.epics-roadmap__sprint-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid #f3f4f6;
+}
+
+.epics-roadmap__sprint-bg--even {
+  background: rgba(249, 250, 251, 0.6);
+}
+
+.epics-roadmap__sprint-bg--active {
+  background: rgba(99, 102, 241, 0.04);
+}
+
+/* Entity groups */
+.epics-roadmap__body {
+  margin-top: 0.5rem;
+}
+
+.epics-roadmap__entity-group {
+  margin-bottom: 1rem;
+}
+
+.epics-roadmap__entity-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #f3f4f6;
+  margin-bottom: 0.25rem;
+}
+
+.epics-roadmap__entity-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.epics-roadmap__entity-dot--inline {
+  width: 8px;
+  height: 8px;
+  margin-right: 0.25rem;
+}
+
+.epics-roadmap__entity-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.epics-roadmap__entity-count {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  background: #f3f4f6;
+  border-radius: 10px;
+  padding: 0.1rem 0.5rem;
+}
+
+/* Epic rows */
+.epics-roadmap__row {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  border-bottom: 1px solid #f9fafb;
+}
+
+.epics-roadmap__row:hover {
+  background: #fafbfc;
+}
+
+/* Resize handle */
+.epics-roadmap__resize-handle {
+  width: 5px;
+  flex-shrink: 0;
+  cursor: col-resize;
+  background: transparent;
+  border-right: 2px solid #e5e7eb;
+  transition: border-color 0.15s;
+  align-self: stretch;
+}
+
+.epics-roadmap__resize-handle:hover {
+  border-color: #6366F1;
+}
+
+.epics-roadmap__row .epics-roadmap__labels-col {
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+/* Tooltip on epic title */
+.epics-roadmap__tooltip-wrapper {
+  position: relative;
+  overflow: visible;
+  flex: 1;
+  min-width: 0;
+}
+
+.epics-roadmap__epic-title {
+  display: block;
+  font-size: 0.75rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.epics-roadmap__tooltip {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #1F2937;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: auto;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.epics-roadmap__tooltip-wrapper:hover .epics-roadmap__tooltip {
+  display: flex;
+}
+
+.epics-roadmap__tooltip a {
+  color: #93C5FD;
+  text-decoration: none;
+}
+
+.epics-roadmap__tooltip a:hover {
+  text-decoration: underline;
+}
+
+.epics-roadmap__tooltip-entity {
+  color: #9CA3AF;
+  font-size: 0.7rem;
+}
+
+.epics-roadmap__row .epics-roadmap__chart-col {
+  position: relative;
+  height: 100%;
+}
+
+/* Epic bar */
+.epics-roadmap__bar {
+  position: absolute;
+  top: 5px;
+  height: 22px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 0.4rem;
+  cursor: default;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+
+.epics-roadmap__bar:hover {
+  opacity: 1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.epics-roadmap__bar--done {
+  opacity: 0.95;
+}
+
+.epics-roadmap__bar--backlog {
+  opacity: 0.5;
+}
+
+/* Stream de capacité équipe */
+.epics-roadmap__capacity {
+  display: flex;
+  align-items: stretch;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 2px solid var(--ds-color-border, #e2e8f0);
+  cursor: pointer;
+}
+
+.epics-roadmap__capacity:hover .epics-roadmap__capacity-seg {
+  opacity: 1;
+}
+
+.epics-roadmap__capacity-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ds-color-text-secondary, #475569);
+}
+
+.epics-roadmap__capacity .epics-roadmap__chart-col {
+  position: relative;
+  height: 26px;
+}
+
+.epics-roadmap__capacity-seg {
+  position: absolute;
+  top: 0;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.88;
+  transition: opacity 0.15s;
+}
+
+.epics-roadmap__capacity-val {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.epics-roadmap__bar-label {
+  margin-left: auto; /* pastille collée à droite du segment, comme la maquette */
+  flex-shrink: 0;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 10px;
+  padding: 1px 6px;
+  line-height: 1.5;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Form */
+.epic-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.epic-form__row {
+  display: flex;
+  gap: 1rem;
+}
+
+.epic-form__row > * {
+  flex: 1;
+}
+
+.epic-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Delete */
+.epic-delete {
+  text-align: center;
+}
+
+.epic-delete p {
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.epic-delete__actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* Import */
+.epic-import {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.epic-import__sprint-select {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.epic-import__sprint-hint {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: #e67e22;
+  font-style: italic;
+}
+
+.epic-import__disabled {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  background: #f5f5f5;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+}
+
+.epic-import__disabled p {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.epic-import__options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.epic-import__replace-option {
+  padding: var(--ds-spacing-sm, 0.5rem) 0;
+}
+
+.epic-import__replace-warning {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-sm, 0.5rem);
+  margin-top: var(--ds-spacing-sm, 0.5rem);
+  padding: var(--ds-spacing-sm, 0.5rem) var(--ds-spacing-md, 1rem);
+  background: var(--ds-color-bg-warning-subtle, #FFF7ED);
+  border-radius: var(--ds-radius-md, 8px);
+  color: var(--ds-color-warning-dark, #9A3412);
+  font-size: var(--ds-font-size-sm, 0.875rem);
+}
+
+.epic-import__replace-warning i {
+  color: var(--ds-color-warning, #F59E0B);
+}
+
+/* Preview */
+.epic-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.epic-preview__sprint {
+  background: #e8f5e9;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #4caf50;
+  font-size: 1rem;
+}
+
+.epic-preview__info {
+  background: #f0f7ff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #3498db;
+}
+
+.epic-preview__info p {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+}
+
+.epic-preview__info p:last-child {
+  margin-bottom: 0;
+}
+
+.epic-preview__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.epic-preview__summary-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 600;
+  color: #1a4a7a;
+  background: #dbeafe;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.875rem;
+}
+
+.epic-preview__summary-chip--sp {
+  color: #1a6b3a;
+  background: #d4edda;
+  border-color: #b8dfc7;
+}
+
+.epic-preview__summary-chip--warn {
+  color: #92400e;
+  background: #fef3c7;
+  border-color: #fde68a;
+}
+
+.epic-preview__columns {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.epic-preview__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.epic-preview__table th {
+  text-align: left;
+  padding: 0.5rem;
+  font-weight: 600;
+  background: #fafafa;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.epic-preview__table td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #e5e5e5;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.epic-preview__errors {
+  background: #fff5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e74c3c;
+}
+
+.epic-preview__errors h4 {
+  margin: 0 0 0.5rem 0;
+  color: #e74c3c;
+}
+
+.epic-preview__errors ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.epic-preview__errors li {
+  color: #c0392b;
+  font-size: 0.9rem;
+}
+
+.epic-preview__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Entity Labels */
+.epic-form__entity-labels {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.epic-form__label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.375rem;
+}
+
+.epic-form__label-hint {
+  font-weight: 400;
+  color: #9ca3af;
+  font-size: 0.8rem;
+}
+
+.epic-form__entity-labels-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.epic-form__entity-label-input-wrapper {
+  position: relative;
+  min-width: 200px;
+  flex: 1;
+}
+
+.epic-form__entity-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.epic-form__entity-label-row > *:first-child {
+  flex: 1;
+}
+
+.epic-form__color-picker {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.epic-form__color-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  padding: 0;
+}
+
+.epic-form__color-dot:hover {
+  transform: scale(1.15);
+}
+
+.epic-form__color-dot--active {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px currentColor;
+  transform: scale(1.1);
+}
+
+.epic-form__color-dot--info {
+  background: linear-gradient(135deg, #93c5fd, #3b82f6);
+}
+.epic-form__color-dot--info.epic-form__color-dot--active {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #3b82f6;
+}
+
+.epic-form__color-dot--success {
+  background: linear-gradient(135deg, #6ee7b7, #10b981);
+}
+.epic-form__color-dot--success.epic-form__color-dot--active {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #10b981;
+}
+
+.epic-form__color-dot--warning {
+  background: linear-gradient(135deg, #fcd34d, #f59e0b);
+}
+.epic-form__color-dot--warning.epic-form__color-dot--active {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #f59e0b;
+}
+
+.epic-form__color-dot--error {
+  background: linear-gradient(135deg, #fca5a5, #ef4444);
+}
+.epic-form__color-dot--error.epic-form__color-dot--active {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #ef4444;
+}
+
+.epic-form__color-dot--primary {
+  background: linear-gradient(135deg, #4b5563, #111827);
+}
+.epic-form__color-dot--primary.epic-form__color-dot--active {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #111827;
+}
+
+.epic-form__color-dot--default {
+  background: linear-gradient(135deg, #d1d5db, #9ca3af);
+}
+.epic-form__color-dot--default.epic-form__color-dot--active {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #9ca3af;
+}
+
+.epic-form__label-preview {
+  margin-top: 0.5rem;
+}
+
+.epic-form__entity-label-input-wrapper input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.epic-form__entity-label-input-wrapper input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.epic-form__entity-label-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.epic-form__entity-label-suggestion {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+}
+
+.epic-form__entity-label-suggestion:hover {
+  background-color: #f3f4f6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .epics-page {
+    padding: 1rem;
+  }
+
+  .epics-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .epics-header {
+    flex-direction: column;
+  }
+
+  .epics-header__actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .epics-header__actions > * {
+    flex: 1;
+  }
+
+  .epics-filters__row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .epics-filters__selects {
+    flex-direction: column;
+  }
+
+  .epics-filters__selects > * {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .epic-form__row {
+    flex-direction: column;
+  }
+
+  .epic-import__options {
+    grid-template-columns: 1fr;
+  }
+
+  .epics-table {
+    font-size: 0.85rem;
+  }
+
+  .epics-table th,
+  .epics-table td {
+    padding: 0.5rem;
+  }
+
+  .epics-table__title {
+    max-width: 150px;
+  }
+}
+
+/* ==========================================================================
+   Billing Tab
+   ========================================================================== */
+
+.epics-billing {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Filters */
+.epics-billing__filters-card {
+  padding: 1rem 1.25rem;
+  overflow: visible !important; /* Needed for MultiSelectFilter dropdown to show above other cards */
+  position: relative;
+  z-index: 10;
+}
+
+.epics-billing__filters-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.epics-billing__filters-row > * {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Empty / loading state */
+.epics-billing__loading {
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.epics-billing__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 4rem 2rem;
+  color: var(--ds-color-text-secondary, #6B7280);
+  text-align: center;
+}
+
+.epics-billing__empty-icon {
+  font-size: 2.5rem;
+  opacity: 0.4;
+}
+
+/* Summary cards */
+.epics-billing__summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.epics-billing__summary-card {
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+}
+
+.epics-billing__summary-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--ds-color-text-primary, #1F2937);
+  line-height: 1.1;
+}
+
+.epics-billing__summary-card--success .epics-billing__summary-value {
+  color: var(--ds-color-success, #22C55E);
+}
+
+.epics-billing__summary-label {
+  font-size: 0.8125rem;
+  color: var(--ds-color-text-secondary, #6B7280);
+  margin-top: 0.25rem;
+}
+
+/* Entity groups */
+.epics-billing__entity-card {
+  overflow: hidden;
+  padding: 0;
+}
+
+.epics-billing__entity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--ds-color-border, #E5E7EB);
+  background: var(--ds-color-background-secondary, #F9FAFB);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.epics-billing__entity-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ds-color-text-primary, #1F2937);
+}
+
+.epics-billing__entity-stats {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.epics-billing__entity-stat {
+  font-size: 0.8125rem;
+  color: var(--ds-color-text-secondary, #6B7280);
+}
+
+.epics-billing__entity-stat--total {
+  font-weight: 600;
+  color: var(--ds-color-text-primary, #1F2937);
+}
+
+.epics-billing__entity-stat--done {
+  font-weight: 600;
+  color: var(--ds-color-success, #22C55E);
+}
+
+/* Table */
+.epics-billing__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.epics-billing__table th {
+  text-align: left;
+  padding: 0.625rem 1.25rem;
+  color: var(--ds-color-text-secondary, #6B7280);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  border-bottom: 1px solid var(--ds-color-border, #E5E7EB);
+  white-space: nowrap;
+}
+
+.epics-billing__th-sp {
+  text-align: right !important;
+}
+
+.epics-billing__table td {
+  padding: 0.625rem 1.25rem;
+  border-bottom: 1px solid var(--ds-color-border-light, #F3F4F6);
+  vertical-align: middle;
+}
+
+.epics-billing__row--done td {
+  color: var(--ds-color-text-secondary, #6B7280);
+}
+
+.epics-billing__row--cancelled td {
+  color: var(--ds-color-text-muted, #9CA3AF);
+  text-decoration: line-through;
+}
+
+.epics-billing__row--cancelled .epics-billing__sp,
+.epics-billing__row--cancelled .epics-billing__key {
+  text-decoration: none;
+}
+
+.epics-billing__key {
+  font-family: var(--ds-font-mono, monospace);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  color: var(--ds-color-text-secondary, #6B7280);
+}
+
+.epics-billing__title {
+  max-width: 400px;
+}
+
+.epics-billing__sp {
+  text-align: right;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Sprint date range display */
+.epics-billing__sprint-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.epics-billing__sprint-dates-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.epics-billing__sprint-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.875rem;
+  background: var(--ds-color-background-secondary, #F9FAFB);
+  border: 1px solid var(--ds-color-border, #E5E7EB);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+}
+
+.epics-billing__sprint-pill-name {
+  font-weight: 600;
+  color: var(--ds-color-text-primary, #111827);
+}
+
+.epics-billing__sprint-pill-range {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--ds-color-text-secondary, #6B7280);
+}
+
+.epics-billing__sprint-pill-range .bi {
+  font-size: 0.75rem;
+}
+
+.epics-billing__sprint-dates-global {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: var(--ds-color-primary-50, #EFF6FF);
+  border: 1px solid var(--ds-color-primary-200, #BFDBFE);
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  color: var(--ds-color-primary-700, #1D4ED8);
+  align-self: flex-start;
+}
+
+.epics-billing__sprint-dates-global .bi {
+  font-size: 0.875rem;
+}
+
+/* Export action bar */
+.epics-billing__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+/* Epic rows (parent level) */
+.epics-billing__row--epic td {
+  background: var(--ds-color-background-secondary, #F9FAFB);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--ds-color-border, #E5E7EB);
+}
+
+.epics-billing__title--epic {
+  font-weight: 600;
+  color: var(--ds-color-text-primary, #1F2937) !important;
+}
+
+.epics-billing__sp--epic {
+  font-weight: 600;
+}
+
+/* Child US rows */
+.epics-billing__row--child td {
+  background: #fff;
+}
+
+.epics-billing__title--child {
+  padding-left: 1.5rem !important;
+  position: relative;
+}
+
+.epics-billing__title--child::before {
+  content: '└';
+  position: absolute;
+  left: 0.375rem;
+  color: var(--ds-color-text-muted, #9CA3AF);
+  font-size: 0.75rem;
+}
+
+.epics-billing__key--child {
+  color: var(--ds-color-text-muted, #9CA3AF) !important;
+}
+
+/* Total row */
+.epics-billing__total-row td {
+  border-bottom: none;
+  border-top: 2px solid var(--ds-color-border, #E5E7EB);
+  background: var(--ds-color-background-secondary, #F9FAFB);
+  padding: 0.75rem 1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .epics-billing__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .epics-billing__filters-row > * {
+    min-width: 100%;
+  }
+}

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { Container, Row, Col, Card, Button, Alert, Image } from 'react-bootstrap';
+import { Login as LoginForm } from '@frhamon/design-system';
 import { useAuth } from '../context/AuthContext';
 import '../styles/Auth.css';
 
@@ -11,159 +9,55 @@ const Login = () => {
   const { t } = useTranslation();
   const { login, error } = useAuth();
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-
-  // Schéma de validation
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .email(t('validation.email'))
-      .required(t('validation.required')),
-    password: Yup.string()
-      .required(t('validation.required'))
-  });
-
-  // Valeurs initiales du formulaire
-  const initialValues = {
-    email: '',
-    password: ''
-  };
+  const [loading, setLoading] = useState(false);
 
   // Gestion de la soumission du formulaire
-  const handleSubmit = async (values, { setSubmitting }) => {
-    const success = await login(values.email, values.password);
+  const handleSubmit = async ({ email, password }) => {
+    setLoading(true);
+    const success = await login(email, password);
     if (success) {
       navigate('/dashboard');
     }
-    setSubmitting(false);
+    setLoading(false);
   };
 
+  // Navigation vers la page d'inscription
+  const handleSignUp = () => {
+    navigate('/register');
+  };
+
+  // Navigation vers la page de mot de passe oublié
+  const handleForgotPassword = () => {
+    navigate('/forgot-password');
+  };
+
+  // Logo de l'application
+  const logo = (
+    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="56" height="56" rx="12" fill="#4F46E5" />
+      <path d="M16 18H24V38H16V18Z" fill="white" />
+      <path d="M28 18H40V24H28V18Z" fill="white" />
+      <path d="M28 26H36V32H28V26Z" fill="white" />
+      <path d="M28 34H40V38H28V34Z" fill="white" />
+    </svg>
+  );
+
   return (
-    <Container className="auth-container">
-      <Row className="justify-content-center">
-        <Col md={8} lg={6} xl={5}>
-          <Card className="auth-card">
-            <Card.Body className="p-4">
-              <div className="text-center mb-4">
-                {/* Logo ou icône d'application */}
-                <div className="mb-3">
-                  <i className="bi bi-kanban text-primary" style={{ fontSize: '3rem' }}></i>
-                </div>
-                <h2 className="auth-title">{t('auth.login')}</h2>
-                <p className="text-muted">{t('auth.loginSubtitle')}</p>
-              </div>
-
-              {error && <Alert variant="danger">{error}</Alert>}
-
-              <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={handleSubmit}
-              >
-                {({ isSubmitting }) => (
-                  <Form>
-                    <div className="mb-3">
-                      <label htmlFor="email" className="form-label">
-                        <span className="icon-container"><i className="bi bi-envelope"></i></span>
-                        {t('auth.email')}
-                      </label>
-                      <Field
-                        type="email"
-                        name="email"
-                        id="email"
-                        className="form-control"
-                        placeholder={t('auth.emailPlaceholder')}
-                      />
-                      <ErrorMessage name="email" component="div" className="text-danger mt-1" />
-                    </div>
-
-                    <div className="mb-3">
-                      <label htmlFor="password" className="form-label">
-                        <span className="icon-container"><i className="bi bi-lock"></i></span>
-                        {t('auth.password')}
-                      </label>
-                      <div className="input-group">
-                        <Field
-                          type={showPassword ? "text" : "password"}
-                          name="password"
-                          id="password"
-                          className="form-control"
-                          placeholder={t('auth.passwordPlaceholder')}
-                        />
-                        <Button 
-                          variant="outline-secondary"
-                          onClick={() => setShowPassword(!showPassword)}
-                          aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
-                          className="password-toggle-btn"
-                          tabIndex="-1"
-                        >
-                          <i className={`bi bi-eye${showPassword ? '-slash' : ''}`}></i>
-                        </Button>
-                      </div>
-                      <ErrorMessage name="password" component="div" className="text-danger mt-1" />
-                    </div>
-
-                    <div className="d-flex justify-content-between mb-4">
-                      <div className="form-check">
-                        <input
-                          type="checkbox"
-                          className="form-check-input"
-                          id="rememberMe"
-                        />
-                        <label className="form-check-label" htmlFor="rememberMe">
-                          {t('auth.rememberMe')}
-                        </label>
-                      </div>
-                      <Link to="/forgot-password" className="text-primary">
-                        {t('auth.forgotPassword')}
-                      </Link>
-                    </div>
-
-                    <div className="login-btn-container">
-                      <Button
-                        type="submit"
-                        variant="primary"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                            {t('common.loading')}
-                          </>
-                        ) : (
-                          <>
-                            <i className="bi bi-box-arrow-in-right me-2"></i>
-                            {t('auth.loginButton')}
-                          </>
-                        )}
-                      </Button>
-                    </div>
-                  </Form>
-                )}
-              </Formik>
-
-
-
-              <div className="text-center mt-4">
-                <p className="mb-0">
-                  {t('auth.noAccount')}{' '}
-                  <Link to="/register" className="text-primary">
-                    <i className="bi bi-person-plus me-1"></i>
-                    {t('auth.registerLink')}
-                  </Link>
-                </p>
-              </div>
-              
-              <div className="text-center mt-3">
-                <small className="text-muted">
-                  <i className="bi bi-shield-lock me-1"></i>
-                  {t('auth.secureConnection')}
-                </small>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+    <div className="auth-page">
+      <LoginForm
+        onSubmit={handleSubmit}
+        loading={loading}
+        error={error}
+        title={t('auth.login')}
+        subtitle={t('auth.loginSubtitle')}
+        showRememberMe={true}
+        showForgotPassword={true}
+        onForgotPassword={handleForgotPassword}
+        showSignUp={true}
+        onSignUp={handleSignUp}
+        logo={logo}
+      />
+    </div>
   );
 };
 

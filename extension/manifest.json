@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "POTool – Jira Sync",
+  "version": "1.0.0",
+  "description": "Synchronise les issues Jira vers POTool en réutilisant votre session Jira (aucun token API requis).",
+  "permissions": ["storage", "alarms"],
+  "host_permissions": [
+    "https://*.atlassian.net/*",
+    "http://localhost:3002/*",
+    "http://localhost:3000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "POTool – Jira Sync",
+    "default_popup": "popup.html"
+  }
+}

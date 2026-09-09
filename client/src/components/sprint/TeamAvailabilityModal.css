@@ -1,0 +1,97 @@
+.team-availability {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.team-availability__hint {
+  font-size: 13px;
+  color: var(--ds-color-text-secondary, #64748b);
+  margin: 0;
+}
+
+.team-availability__row {
+  display: flex;
+  gap: 10px;
+}
+
+.team-availability__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.team-availability__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+}
+
+.team-availability__select {
+  padding: 8px 10px;
+  border: 1px solid var(--ds-color-border, #cbd5e1);
+  border-radius: var(--ds-radius-md, 6px);
+  font-size: 14px;
+  min-height: 40px;
+}
+
+.team-availability__add {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.team-availability__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 220px;
+  overflow-y: auto;
+  border-top: 1px solid var(--ds-color-border, #e2e8f0);
+  padding-top: 8px;
+}
+
+.team-availability__empty {
+  font-size: 12px;
+  color: var(--ds-color-text-tertiary, #94a3b8);
+}
+
+.team-availability__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: var(--ds-color-surface-hover, #f1f5f9);
+}
+
+.team-availability__item-dates {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.team-availability__item-reason {
+  font-size: 12px;
+  color: var(--ds-color-text-secondary, #64748b);
+  flex: 1;
+}
+
+.team-availability__item--editing {
+  outline: 2px solid var(--ds-color-primary, #2563eb);
+}
+.team-availability__item-edit {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  color: var(--ds-color-primary, #2563eb);
+  cursor: pointer;
+  font-size: 14px;
+}
+.team-availability__item-del {
+  border: none;
+  background: transparent;
+  color: var(--ds-color-danger, #dc2626);
+  cursor: pointer;
+  font-size: 14px;
+}

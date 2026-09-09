@@ -1,5 +1,35 @@
 /* Styles pour les écrans d'authentification */
 
+/* Page d'authentification utilisant le composant Login du design system */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+}
+
+.auth-page .login {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.auth-page .login__container {
+  padding: 2.5rem;
+}
+
+.auth-page .login__input {
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+}
+
+.auth-page .login__submit {
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+}
+
 .auth-container {
   min-height: 100vh;
   display: flex;
@@ -256,6 +286,26 @@
   .form-control {
     padding: 10px 12px;
   }
+}
+
+/* Alert styles */
+.auth-alert {
+  padding: var(--ds-spacing-md, 1rem);
+  border-radius: var(--ds-radius-md, 8px);
+  margin-bottom: var(--ds-spacing-md, 1rem);
+  font-size: var(--ds-font-size-sm, 0.875rem);
+}
+
+.auth-alert--danger {
+  background-color: var(--ds-color-danger-light, #FEE2E2);
+  color: var(--ds-color-danger, #EF4444);
+  border: 1px solid var(--ds-color-danger, #EF4444);
+}
+
+.auth-alert--success {
+  background-color: var(--ds-color-success-light, #DCFCE7);
+  color: #166534;
+  border: 1px solid var(--ds-color-success, #22C55E);
 }
 
 /* Styles pour le mode sombre (à implémenter plus tard) */
